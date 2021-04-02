@@ -5,11 +5,12 @@
 	<parent>
 		<artifactId>ballcat</artifactId>
 		<groupId>com.hccake</groupId>
-		<version>${revision}</version>
+		<version>0.0.9-SNAPSHOT</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 
 	<artifactId>ballcat-samples</artifactId>
+	<version>${revision}</version>
 	<packaging>pom</packaging>
 
 	<modules>
@@ -20,24 +21,22 @@
     </modules>
 
 	<properties>
-		<maven.deploy.skip>true</maven.deploy.skip>
+		<revision>0.0.9-SNAPSHOT</revision>
 	</properties>
 
-	<profiles>
-		<profile>
-			<id>ossrh</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.sonatype.plugins</groupId>
-						<artifactId>nexus-staging-maven-plugin</artifactId>
-						<configuration>
-							<skipNexusStagingDeployMojo>true</skipNexusStagingDeployMojo>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
+	<!-- oss 快照私服 -->
+	<repositories>
+		<repository>
+			<id>oss-snapshots</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+			</snapshots>
+		</repository>
+	</repositories>
 
 </project>
