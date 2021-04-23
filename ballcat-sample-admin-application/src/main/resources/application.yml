@@ -6,16 +6,78 @@ spring:
     name: @artifactId@
   profiles:
     active: @profiles.active@  # 当前激活配置，默认dev
+
+# 图形验证码
+aj:
+  captcha:
+    waterMark: 'BallCat'
+    cacheType: redis
+
+# mybatis-plus相关配置
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/*/*Mapper.xml
+  global-config:
+    banner: false
+    db-config:
+      id-type: auto
+      insert-strategy: not_empty
+      update-strategy: not_empty
+      logic-delete-value: "NOW()" # 逻辑已删除值(使用当前时间标识)
+      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
+
+# 定时任务相关配置
+xxl:
+  job:
+    admin:
+      addresses: http://ballcat-job:8888/xxl-job-admin # xxl-job-admin 接口地址
+    executor:
+      port: 8081 #通讯端口
+      appName: ballcat-admin-jobs
+      logretentiondays: 30 #日志保留天数
+
+---
+# Spring Boot Actuator 暴露监控端口
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+# Spring Boot Admin
+spring:
   boot:
     admin:
       client:
+        # 优先使用 ip 访问 client 端
+        instance:
+          prefer-ip: true
         url: http://ballcat-monitor:9999
         username: admin
         password: 123456
 
+---
+# BallCat 相关配置
 ballcat:
-  password:
-    secret-key: '==BallCat-Auth=='
+  upms:
+    # 登陆验证码是否开启
+    login-captcha-enabled: true
+  security:
+    # 前端传输密码的 AES 加密密钥
+    password-secret-key: '==BallCat-Auth=='
+    ## 忽略鉴权的 url 列表
+    ignore-urls:
+      - /public/**
+      - /actuator/**
+      - /doc.html
+      - /v2/api-docs/**
+      - /v3/api-docs/**
+      - /swagger-resources/**
+      - /swagger-ui/**
+      - /webjars/**
+      - /bycdao-ui/**
+      - /favicon.ico
+      - /captcha/**
+  # 项目 redis 缓存的 key 前缀
   redis:
     key-prefix: 'ballcat:'
   # actuator 加解密密钥
@@ -45,57 +107,10 @@ ballcat:
     aggregator:
       provider-resources:
         - { name: ballcat-api,  url: http://ballcat-api:9090/v2/api-docs, swagger-version: 2.0 }
-  login:
-    captcha:
-      enabled: true
 
-security:
-  oauth2:
-    ignore-urls:
-      - /public/**
-      - /actuator/**
-      - /doc.html
-      - /v2/api-docs/**
-      - /v3/api-docs/**
-      - /swagger-resources/**
-      - /swagger-ui/**
-      - /webjars/**
-      - /bycdao-ui/**
-      - /favicon.ico
-      - /captcha/**
 
-# 图形验证码
-aj:
-  captcha:
-    waterMark: 'BallCat'
-    cacheType: redis
 
-# 暴露监控端口
-management:
-  endpoints:
-    web:
-      exposure:
-        include: '*'
 
-# mybatis-plus相关配置
-mybatis-plus:
-  mapper-locations: classpath*:/mapper/*/*Mapper.xml
-  global-config:
-    banner: false
-    db-config:
-      id-type: auto
-      insert-strategy: not_empty
-      update-strategy: not_empty
-      logic-delete-value: "NOW()" # 逻辑已删除值(使用当前时间标识)
-      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
 
-# 定时任务相关配置
-xxl:
-  job:
-    admin:
-      addresses: http://ballcat-job:8888/xxl-job-admin # xxl-job-admin 接口地址
-    executor:
-      port: 8081 #通讯端口
-      appName: ballcat-admin-jobs
-      logretentiondays: 30 #日志保留天数
+
 
