@@ -7,3 +7,9 @@ spring:
     host: ballcat-redis
     password: ''
     port: 6379
+
+# 日志文件地址，配置此属性以便 SBA 在线查看日志
+logging:
+  file:
+    path: logs/@artifactId@
+    name: ${logging.file.path}/output.log
