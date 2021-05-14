@@ -14,16 +14,12 @@ logging:
     path: logs/@artifactId@
     name: ${logging.file.path}/output.log
 
-file:
-  storage:
-    type: aliyun
-    endpoint: oss-cn-shanghai.aliyuncs.com
-    access-key: your key here
-    access-secret: your secret here
-    bucket-name: your bucket here
-
-
 # 生产环境关闭文档
 ballcat:
   swagger:
     enabled: false
+  oss:
+    bucket: your bucket here
+    endpoint: oss-cn-shanghai.aliyuncs.com
+    access-key: your key here
+    access-secret: your secret here
