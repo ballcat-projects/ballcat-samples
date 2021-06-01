@@ -15,5 +15,6 @@ logging:
     name: ${logging.file.path}/output.log
 
 # 生产环境关闭文档
-swagger:
-  enabled: false
+ballcat:
+  swagger:
+    enabled: false

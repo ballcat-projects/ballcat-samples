@@ -1,5 +1,6 @@
 package com.your.packages.admin.modules.test;
 
+import com.hccake.ballcat.system.service.SysConfigService;
 import com.hccake.ballcat.common.redis.core.annotation.CacheDel;
 import com.hccake.ballcat.common.redis.core.annotation.CachePut;
 import com.hccake.ballcat.common.redis.core.annotation.Cached;
@@ -7,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -20,6 +22,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class CacheTestController {
 
 	private final StringRedisTemplate redisTemplate;
+
+	private final SysConfigService sysConfigService;
 
 	@GetMapping("/cachedTestKey1")
 	@Cached(key = "testKey1")
@@ -43,6 +47,11 @@ public class CacheTestController {
 	public String cachedTestKey2() {
 		redisTemplate.opsForValue().set("testKey2", "1");
 		return "testKey2 add success";
+	}
+
+	@GetMapping("/config")
+	public String config(@RequestParam("confKey") String confKey) {
+		return sysConfigService.getConfValueByKey(confKey);
 	}
 
 }

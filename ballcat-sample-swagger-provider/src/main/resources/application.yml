@@ -32,13 +32,7 @@ mybatis-plus:
       insert-strategy: not_empty
       update-strategy: not_empty
 
-# 密码加解密密钥
-password:
-  secret-key: '==BallCat-Auth=='
-
-
 # 定时任务相关
-
 xxl:
   job:
     admin:

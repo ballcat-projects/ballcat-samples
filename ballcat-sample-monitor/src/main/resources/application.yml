@@ -16,10 +16,6 @@ spring:
       ui:
         title: 'BallCat Monitor'
 
-# 请求Actuator加解密密钥
-monitor:
-  secret-id: 'ballcat-monitor'
-  secret-key: '=BallCat-Monitor'
 
 ballcat:
   # actuator 加解密密钥
