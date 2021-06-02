@@ -24,15 +24,15 @@ public class LogHandlerConfig {
 
 	/**
 	 * 访问日志保存
-	 * @param accessLogSaveThread 访问日志保存线程
+	 * @param accessLogService 访问日志Service
 	 * @return CustomAccessLogHandler
 	 */
 	@Bean
 	@ConditionalOnBean(AccessLogService.class)
 	@ConditionalOnClass(CustomAccessLogHandler.class)
 	@ConditionalOnMissingBean(AccessLogHandler.class)
-	public CustomAccessLogHandler customAccessLogHandler(AccessLogSaveThread accessLogSaveThread){
-		return new CustomAccessLogHandler(accessLogSaveThread);
+	public CustomAccessLogHandler customAccessLogHandler(AccessLogService accessLogService){
+		return new CustomAccessLogHandler(new AccessLogSaveThread(accessLogService));
 	}
 
 	/**

@@ -6,6 +6,23 @@ spring:
     name: @artifactId@
   profiles:
     active: @profiles.active@  # 当前激活配置，默认dev
+  # Spring Boot Admin
+  boot:
+    admin:
+      client:
+        # 优先使用 ip 访问 client 端
+        instance:
+          prefer-ip: true
+        url: http://ballcat-monitor:9999
+        username: admin
+        password: 123456
+
+# Spring Boot Actuator 暴露监控端口
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
 
 # 图形验证码
 aj:
@@ -25,6 +42,7 @@ mybatis-plus:
       logic-delete-value: "NOW()" # 逻辑已删除值(使用当前时间标识)
       logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
 
+
 # 定时任务相关配置
 xxl:
   job:
@@ -35,27 +53,7 @@ xxl:
       appName: ballcat-admin-jobs
       logretentiondays: 30 #日志保留天数
 
----
-# Spring Boot Actuator 暴露监控端口
-management:
-  endpoints:
-    web:
-      exposure:
-        include: '*'
 
-# Spring Boot Admin
-spring:
-  boot:
-    admin:
-      client:
-        # 优先使用 ip 访问 client 端
-        instance:
-          prefer-ip: true
-        url: http://ballcat-monitor:9999
-        username: admin
-        password: 123456
-
----
 # BallCat 相关配置
 ballcat:
   upms:
