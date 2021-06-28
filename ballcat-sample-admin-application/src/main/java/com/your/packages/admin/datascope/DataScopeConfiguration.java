@@ -20,4 +20,5 @@ public class DataScopeConfiguration {
 		CustomDataPermissionHandler dataPermissionHandler = new CustomDataPermissionHandler(list);
 		return new DataPermissionInterceptor(new DataScopeSqlProcessor(), dataPermissionHandler);
 	}
+
 }

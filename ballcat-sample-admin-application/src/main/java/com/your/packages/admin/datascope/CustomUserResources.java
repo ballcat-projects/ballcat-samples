@@ -9,6 +9,7 @@ import java.util.List;
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class CustomUserResources extends DefaultUserResources {
+
 	/**
 	 * 班级列表
 	 */

@@ -1,7 +1,7 @@
 package com.your.packages.admin;
 
-import com.hccake.ballcat.commom.log.access.annotation.EnableAccessLog;
-import com.hccake.ballcat.commom.log.operation.annotation.EnableOperationLog;
+import com.hccake.ballcat.common.log.access.annotation.EnableAccessLog;
+import com.hccake.ballcat.common.log.operation.annotation.EnableOperationLog;
 import com.hccake.ballcat.common.job.annotation.EnableXxlJob;
 import com.hccake.ballcat.common.swagger.annotation.EnableSwagger2Aggregator;
 import org.mybatis.spring.annotation.MapperScan;

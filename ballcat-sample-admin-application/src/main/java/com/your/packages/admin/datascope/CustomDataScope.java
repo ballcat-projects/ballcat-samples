@@ -15,6 +15,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class CustomDataScope implements DataScope {
+
 	// 列名
 	private static final String CLASS = "class";
 
@@ -39,9 +40,8 @@ public class CustomDataScope implements DataScope {
 		}
 		// 获取用户拥有的班级列表
 		UserResources userResources = userDetails.getUserResources();
-		List<Expression> list = ((CustomUserResources)userResources).getClassList().stream()
-				.map(x -> new StringValue(String.valueOf(x)))
-				.collect(Collectors.toList());
+		List<Expression> list = ((CustomUserResources) userResources).getClassList().stream()
+				.map(x -> new StringValue(String.valueOf(x))).collect(Collectors.toList());
 
 		// 列对象
 		Column column = new Column(tableAlias == null ? CLASS : tableAlias.getName() + "." + CLASS);

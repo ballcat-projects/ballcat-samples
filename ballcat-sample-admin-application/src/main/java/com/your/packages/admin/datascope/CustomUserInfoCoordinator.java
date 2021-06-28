@@ -20,12 +20,14 @@ public class CustomUserInfoCoordinator extends UserInfoCoordinator {
 		userResources.setPermissions(permissions);
 
 		// 这里仅仅是示例，实际使用时一定是根据当前用户名去查询出其所拥有的资源列表
-		if("A".equals(user.getUsername())) {
+		if ("A".equals(user.getUsername())) {
 			userResources.setClassList(Collections.singletonList("一班"));
-		}else {
-			userResources.setClassList(Arrays.asList("一班","二班"));
+		}
+		else {
+			userResources.setClassList(Arrays.asList("一班", "二班"));
 		}
 
 		return userResources;
 	}
+
 }
