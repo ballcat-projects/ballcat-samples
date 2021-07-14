@@ -1,10 +1,11 @@
 package com.your.packages.admin.config;
 
 import com.hccake.ballcat.common.log.access.handler.AccessLogHandler;
-import com.hccake.ballcat.common.log.operation.service.OperationLogHandler;
+import com.hccake.ballcat.common.log.operation.handler.OperationLogHandler;
 import com.hccake.ballcat.log.handler.CustomAccessLogHandler;
 import com.hccake.ballcat.log.handler.CustomOperationLogHandler;
 import com.hccake.ballcat.log.handler.LoginLogHandler;
+import com.hccake.ballcat.log.model.entity.AccessLog;
 import com.hccake.ballcat.log.service.AccessLogService;
 import com.hccake.ballcat.log.service.LoginLogService;
 import com.hccake.ballcat.log.service.OperationLogService;
@@ -32,7 +33,7 @@ public class LogHandlerConfig {
 	@ConditionalOnBean(AccessLogService.class)
 	@ConditionalOnClass(CustomAccessLogHandler.class)
 	@ConditionalOnMissingBean(AccessLogHandler.class)
-	public CustomAccessLogHandler customAccessLogHandler(AccessLogService accessLogService) {
+	public AccessLogHandler<AccessLog> customAccessLogHandler(AccessLogService accessLogService) {
 		return new CustomAccessLogHandler(new AccessLogSaveThread(accessLogService));
 	}
 
@@ -45,7 +46,7 @@ public class LogHandlerConfig {
 	@ConditionalOnBean(OperationLogService.class)
 	@ConditionalOnClass(CustomOperationLogHandler.class)
 	@ConditionalOnMissingBean(OperationLogHandler.class)
-	public CustomOperationLogHandler customOperationLogHandler(OperationLogService operationLogService) {
+	public OperationLogHandler customOperationLogHandler(OperationLogService operationLogService) {
 		return new CustomOperationLogHandler(operationLogService);
 	}
 

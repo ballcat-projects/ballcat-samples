@@ -1,9 +1,8 @@
 package com.your.packages.admin.datascope;
 
 import com.hccake.ballcat.common.datascope.DataScope;
-import com.hccake.ballcat.oauth.SysUserDetails;
-import com.hccake.ballcat.oauth.domain.UserResources;
-import com.hccake.ballcat.oauth.util.SecurityUtils;
+import com.hccake.ballcat.common.security.userdetails.User;
+import com.hccake.ballcat.common.security.util.SecurityUtils;
 import net.sf.jsqlparser.expression.Alias;
 import net.sf.jsqlparser.expression.Expression;
 import net.sf.jsqlparser.expression.StringValue;
@@ -34,14 +33,16 @@ public class CustomDataScope implements DataScope {
 	@Override
 	public Expression getExpression(String tableName, Alias tableAlias) {
 		// 获取当前登录用户
-		SysUserDetails userDetails = SecurityUtils.getSysUserDetails();
-		if (userDetails == null) {
+		User user = SecurityUtils.getUser();
+		if (user == null) {
 			return null;
 		}
 		// 获取用户拥有的班级列表
-		UserResources userResources = userDetails.getUserResources();
-		List<Expression> list = ((CustomUserResources) userResources).getClassList().stream()
-				.map(x -> new StringValue(String.valueOf(x))).collect(Collectors.toList());
+		Map<String, Object> attributes = user.getAttributes();
+		@SuppressWarnings("unchecked")
+		List<String> classList = (List<String>) attributes.get("classList");
+		List<Expression> list = classList.stream().map(x -> new StringValue(String.valueOf(x)))
+				.collect(Collectors.toList());
 
 		// 列对象
 		Column column = new Column(tableAlias == null ? CLASS : tableAlias.getName() + "." + CLASS);

@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
  * @version 1.0
  * @date 2019/10/16 11:46
  */
-@RequestMapping
+@RequestMapping("/public")
 @RestController
 public class TestController {
 

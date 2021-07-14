@@ -14,10 +14,6 @@
 
 
     <dependencies>
-        <dependency>
-            <groupId>com.hccake</groupId>
-            <artifactId>ballcat-admin-core</artifactId>
-        </dependency>
 		<dependency>
 			<groupId>com.hccake</groupId>
 			<artifactId>ballcat-admin-websocket</artifactId>
@@ -70,7 +66,7 @@
 			<groupId>com.hccake</groupId>
 			<artifactId>ballcat-spring-boot-starter-datascope</artifactId>
 		</dependency>
-    </dependencies>
+	</dependencies>
 
 
     <build>
