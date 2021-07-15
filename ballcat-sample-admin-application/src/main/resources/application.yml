@@ -56,25 +56,27 @@ xxl:
 
 # BallCat 相关配置
 ballcat:
-  upms:
-    # 登陆验证码是否开启
-    login-captcha-enabled: true
   security:
     # 前端传输密码的 AES 加密密钥
     password-secret-key: '==BallCat-Auth=='
-    ## 忽略鉴权的 url 列表
-    ignore-urls:
-      - /public/**
-      - /actuator/**
-      - /doc.html
-      - /v2/api-docs/**
-      - /v3/api-docs/**
-      - /swagger-resources/**
-      - /swagger-ui/**
-      - /webjars/**
-      - /bycdao-ui/**
-      - /favicon.ico
-      - /captcha/**
+    oauth2:
+      authorizationserver:
+        # 登陆验证码是否开启
+        login-captcha-enabled: true
+      resourceserver:
+        ## 忽略鉴权的 url 列表
+        ignore-urls:
+          - /public/**
+          - /actuator/**
+          - /doc.html
+          - /v2/api-docs/**
+          - /v3/api-docs/**
+          - /swagger-resources/**
+          - /swagger-ui/**
+          - /webjars/**
+          - /bycdao-ui/**
+          - /favicon.ico
+          - /captcha/**
   # 项目 redis 缓存的 key 前缀
   redis:
     key-prefix: 'ballcat:'
