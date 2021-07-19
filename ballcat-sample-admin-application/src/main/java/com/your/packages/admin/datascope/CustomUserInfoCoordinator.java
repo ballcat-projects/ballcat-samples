@@ -1,6 +1,6 @@
 package com.your.packages.admin.datascope;
 
-import com.hccake.ballcat.auth.UserInfoCoordinator;
+import com.hccake.ballcat.auth.userdetails.UserInfoCoordinator;
 import com.hccake.ballcat.system.model.entity.SysUser;
 import org.springframework.stereotype.Component;
 

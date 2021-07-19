@@ -16,7 +16,7 @@ logging:
 
 ballcat:
   oss:
-    bucket: your bucket here
+    bucket: your-bucket-here
     endpoint: oss-cn-shanghai.aliyuncs.com
     access-key: your key here
     access-secret: your secret here
