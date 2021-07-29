@@ -19,7 +19,6 @@
 		<module>ballcat-sample-admin-application</module>
 		<module>ballcat-sample-swagger-provider</module>
         <module>ballcat-sample-pay</module>
-        <module>ballcat-sample-sso-application1</module>
     </modules>
 
 	<properties>
