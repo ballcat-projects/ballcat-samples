@@ -66,6 +66,19 @@
 			<groupId>com.hccake</groupId>
 			<artifactId>ballcat-spring-boot-starter-datascope</artifactId>
 		</dependency>
+
+		<!-- API, java.xml.bind module -->
+		<!-- add it when jdk11 -->
+		<dependency>
+			<groupId>jakarta.xml.bind</groupId>
+			<artifactId>jakarta.xml.bind-api</artifactId>
+			<version>2.3.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jaxb</groupId>
+			<artifactId>jaxb-runtime</artifactId>
+			<version>2.3.2</version>
+		</dependency>
 	</dependencies>
 
 
