@@ -16,6 +16,8 @@ spring:
         url: http://ballcat-monitor:9999
         username: admin
         password: 123456
+  messages:
+    basename: 'i18n/test, i18n.validation' # 这里 . 和 / 都可以用来表示文件层级
 
 # Spring Boot Actuator 暴露监控端口
 management:
