@@ -16,6 +16,9 @@ spring:
         url: http://ballcat-monitor:9999
         username: admin
         password: 123456
+  messages:
+    # basename 中的 . 和 / 都可以用来表示文件层级，默认的 basename 是 messages
+    basename: 'messages, i18n.messages, i18n/attributes'
 
 # Spring Boot Actuator 暴露监控端口
 management:
