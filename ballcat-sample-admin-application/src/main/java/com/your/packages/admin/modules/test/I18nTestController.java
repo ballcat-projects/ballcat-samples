@@ -1,15 +1,15 @@
 package com.your.packages.admin.modules.test;
 
-import com.hccake.common.excel.annotation.ResponseExcel;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.validator.constraints.Range;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.Min;
-import java.util.ArrayList;
-import java.util.List;
+import javax.validation.constraints.NotNull;
 
 /**
  * @author hccake
@@ -37,19 +37,15 @@ public class I18nTestController {
 		return demoData;
 	}
 
-	@ResponseExcel(name = "demo", i18nHeader = true)
-	@GetMapping("excelExport")
-	public List<DemoData> excelExport() {
-		List<DemoData> list = new ArrayList<>();
+	@Data
+	public static class DemoData {
 
-		for (int i = 0; i < 10; i++) {
-			DemoData demoData = new DemoData();
-			demoData.setUsername("username:" + i);
-			demoData.setAge(i);
-			list.add(demoData);
-		}
+		@NotNull(message = "{DemoData.username}：{}")
+		private String username;
 
-		return list;
+		@Range(min = 0, max = 150, message = "{DemoData.age}：{}")
+		private Integer age;
+
 	}
 
 }
