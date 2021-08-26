@@ -9,10 +9,12 @@ import net.sf.jsqlparser.expression.StringValue;
 import net.sf.jsqlparser.expression.operators.relational.ExpressionList;
 import net.sf.jsqlparser.expression.operators.relational.InExpression;
 import net.sf.jsqlparser.schema.Column;
+import org.springframework.stereotype.Component;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
+@Component
 public class CustomDataScope implements DataScope {
 
 	// 列名
