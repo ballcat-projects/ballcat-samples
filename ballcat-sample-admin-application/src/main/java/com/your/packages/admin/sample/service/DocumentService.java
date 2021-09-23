@@ -22,4 +22,12 @@ public interface DocumentService extends ExtendService<Document> {
 	 */
 	PageResult<DocumentPageVO> queryPage(PageParam pageParam, DocumentQO qo);
 
+	/**
+	 * 更新用户的组织id
+	 * @param userId 用户id
+	 * @param originOrganizationId 原组织id
+	 * @param currentOrganizationId 现组织id
+	 */
+	void updateUserOrganizationId(Integer userId, Integer originOrganizationId, Integer currentOrganizationId);
+
 }

@@ -1,8 +1,10 @@
 package com.your.packages.admin.sample.mapper;
 
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Constants;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.hccake.ballcat.common.model.domain.PageParam;
 import com.hccake.ballcat.common.model.domain.PageResult;
 import com.hccake.extend.mybatis.plus.conditions.query.LambdaQueryWrapperX;
@@ -42,5 +44,18 @@ public interface DocumentMapper extends ExtendMapper<Document> {
 	 * @return List<DocumentPageVO>
 	 */
 	List<DocumentPageVO> selectPageVO(IPage<Document> page, @Param(Constants.WRAPPER) Wrapper wrapper);
+
+	/**
+	 * 更新用户的组织id
+	 * @param userId 用户id
+	 * @param originOrganizationId 原组织id
+	 * @param currentOrganizationId 现组织id
+	 */
+	default void updateUserOrganizationId(Integer userId, Integer originOrganizationId, Integer currentOrganizationId) {
+		LambdaUpdateWrapper<Document> wrapper = Wrappers.lambdaUpdate(Document.class)
+				.set(Document::getOrganizationId, currentOrganizationId).eq(Document::getUserId, userId)
+				.eq(Document::getOrganizationId, originOrganizationId);
+		this.update(null, wrapper);
+	}
 
 }

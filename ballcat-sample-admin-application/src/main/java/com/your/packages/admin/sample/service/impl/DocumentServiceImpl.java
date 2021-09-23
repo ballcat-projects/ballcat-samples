@@ -36,6 +36,11 @@ public class DocumentServiceImpl extends ExtendServiceImpl<DocumentMapper, Docum
 		return baseMapper.queryPage(pageParam, qo);
 	}
 
+	@Override
+	public void updateUserOrganizationId(Integer userId, Integer originOrganizationId, Integer currentOrganizationId) {
+		baseMapper.updateUserOrganizationId(userId, originOrganizationId, currentOrganizationId);
+	}
+
 	/**
 	 * 插入一条记录（选择字段，策略插入）
 	 * @param document 实体对象
