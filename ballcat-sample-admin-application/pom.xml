@@ -66,6 +66,12 @@
 			<artifactId>ballcat-spring-boot-starter-datascope</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-oauth2-client</artifactId>
+		</dependency>
+
+
 		<!-- API, java.xml.bind module -->
 		<!-- add it when jdk11 -->
 		<dependency>

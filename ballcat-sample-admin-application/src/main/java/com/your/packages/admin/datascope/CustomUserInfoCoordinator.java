@@ -1,30 +1,28 @@
 package com.your.packages.admin.datascope;
 
 import com.hccake.ballcat.auth.userdetails.UserInfoCoordinator;
-import com.hccake.ballcat.system.model.entity.SysUser;
+import com.hccake.ballcat.common.security.constant.UserAttributeNameConstants;
+import com.hccake.ballcat.system.model.dto.UserInfoDTO;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 import java.util.Map;
 
+/**
+ * @author hccake
+ */
 @Component
+@RequiredArgsConstructor
 public class CustomUserInfoCoordinator extends UserInfoCoordinator {
 
-	@Override
-	public Map<String, Object> coordinateAttribute(SysUser sysUser, Map<String, Object> attribute) {
-		// 用户资源，角色和权限
-		List<String> classList;
-		// 这里仅仅是示例，实际使用时一定是根据当前用户名去查询出其所拥有的资源列表
-		if ("A".equals(sysUser.getUsername())) {
-			classList = Collections.singletonList("一班");
-		}
-		else {
-			classList = Arrays.asList("一班", "二班");
-		}
-		attribute.put("classList", classList);
+	private final DataScopeProcessor dataScopeProcessor;
 
+	@Override
+	public Map<String, Object> coordinateAttribute(UserInfoDTO userInfoDTO, Map<String, Object> attribute) {
+		// 数据权限填充
+		UserDataScope userDataScope = dataScopeProcessor.mergeScopeType(userInfoDTO.getSysUser(),
+				userInfoDTO.getRoles());
+		attribute.put(UserAttributeNameConstants.USER_DATA_SCOPE, userDataScope);
 		return attribute;
 	}
 
