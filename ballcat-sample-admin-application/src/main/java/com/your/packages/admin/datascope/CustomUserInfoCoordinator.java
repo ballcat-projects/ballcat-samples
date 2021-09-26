@@ -1,7 +1,7 @@
 package com.your.packages.admin.datascope;
 
-import com.hccake.ballcat.auth.userdetails.UserInfoCoordinator;
 import com.hccake.ballcat.common.security.constant.UserAttributeNameConstants;
+import com.hccake.ballcat.system.authentication.UserInfoCoordinator;
 import com.hccake.ballcat.system.model.dto.UserInfoDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
