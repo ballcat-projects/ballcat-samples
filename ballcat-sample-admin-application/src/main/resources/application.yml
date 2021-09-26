@@ -59,6 +59,8 @@ xxl:
 
 # BallCat 相关配置
 ballcat:
+  websocket:
+    message-distributor: redis
   security:
     # 前端传输密码的 AES 加密密钥
     password-secret-key: '==BallCat-Auth=='
