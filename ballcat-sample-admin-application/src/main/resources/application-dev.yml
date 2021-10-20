@@ -7,10 +7,3 @@ spring:
     host: ballcat-redis
     password: ''
     port: 6379
-
-ballcat:
-  oss:
-    endpoint: oss-cn-shanghai.aliyuncs.com
-    access-key: your key here
-    access-secret: your secret here
-    bucket: your-bucket-here
