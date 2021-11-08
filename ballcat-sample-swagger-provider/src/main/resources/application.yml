@@ -33,22 +33,7 @@ xxl:
       logretentiondays: 30 #日志保留天数
 
 ballcat:
-  # 项目 redis 缓存的 key 前缀
-  redis:
-    key-prefix: 'ballcat:'
   security:
-    ## 忽略鉴权的 url 列表
-    ignore-urls:
-      - /public/**
-      - /actuator/**
-      - /doc.html
-      - /v2/api-docs/**
-      - /v3/api-docs/**
-      - /swagger-resources/**
-      - /swagger-ui/**
-      - /webjars/**
-      - /bycdao-ui/**
-      - /favicon.ico
     oauth2:
       resourceserver:
         shared-stored-token: false
@@ -56,6 +41,18 @@ ballcat:
           client-id: resource_server1
           client-secret: resource_server1
           introspection-uri: http://ballcat-admin:8080/oauth/check_token
+        ignore-urls:
+          ## 忽略鉴权的 url 列表
+          - /public/**
+          - /actuator/**
+          - /doc.html
+          - /v2/api-docs/**
+          - /v3/api-docs/**
+          - /swagger-resources/**
+          - /swagger-ui/**
+          - /webjars/**
+          - /bycdao-ui/**
+          - /favicon.ico
   swagger:
     title: BallCat-Api Docs
     documentation-type: swagger_2
