@@ -13,7 +13,7 @@ import java.util.Map;
  */
 @Component
 @RequiredArgsConstructor
-public class CustomUserInfoCoordinator extends UserInfoCoordinator {
+public class CustomUserInfoCoordinator implements UserInfoCoordinator {
 
 	private final DataScopeProcessor dataScopeProcessor;
 
