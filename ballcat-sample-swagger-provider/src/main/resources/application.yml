@@ -38,8 +38,8 @@ ballcat:
       resourceserver:
         shared-stored-token: false
         opaque-token:
-          client-id: resource_server1
-          client-secret: resource_server1
+          client-id: test
+          client-secret: test
           introspection-uri: http://ballcat-admin:8080/oauth/check_token
         ignore-urls:
           ## 忽略鉴权的 url 列表
