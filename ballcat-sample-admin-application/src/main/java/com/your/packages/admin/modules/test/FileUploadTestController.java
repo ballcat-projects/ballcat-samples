@@ -1,6 +1,6 @@
 package com.your.packages.admin.modules.test;
 
-import com.hccake.ballcat.common.oss.OssClient;
+import com.hccake.ballcat.file.service.FileService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,11 +18,11 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class FileUploadTestController {
 
-	private final OssClient ossClient;
+	private final FileService fileService;
 
 	@PostMapping("file")
 	public String hello(@RequestParam("file") MultipartFile file) throws IOException {
-		return ossClient.upload(file.getInputStream(), "/test/" + file.getOriginalFilename(), file.getSize());
+		return fileService.upload(file.getInputStream(), "/test/" + file.getOriginalFilename(), file.getSize());
 	}
 
 }
