@@ -13,7 +13,6 @@ import com.your.packages.admin.sample.service.DocumentService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -43,7 +42,6 @@ public class DocumentController {
 	 */
 	@ApiOperation(value = "分页查询", notes = "分页查询")
 	@GetMapping("/page")
-	@PreAuthorize("@per.hasPermission('sample:document:read')")
 	public R<PageResult<DocumentPageVO>> getDocumentPage(PageParam pageParam, DocumentQO documentQO) {
 		return R.ok(documentService.queryPage(pageParam, documentQO));
 	}
@@ -56,7 +54,6 @@ public class DocumentController {
 	@ApiOperation(value = "新增文档表，用于演示数据权限", notes = "新增文档表，用于演示数据权限")
 	@CreateOperationLogging(msg = "新增文档表，用于演示数据权限")
 	@PostMapping
-	@PreAuthorize("@per.hasPermission('sample:document:add')")
 	public R save(@RequestBody Document document) {
 		return documentService.save(document) ? R.ok()
 				: R.failed(BaseResultCode.UPDATE_DATABASE_ERROR, "新增文档表，用于演示数据权限失败");
@@ -70,7 +67,6 @@ public class DocumentController {
 	@ApiOperation(value = "通过id删除文档表，用于演示数据权限", notes = "通过id删除文档表，用于演示数据权限")
 	@DeleteOperationLogging(msg = "通过id删除文档表，用于演示数据权限")
 	@DeleteMapping("/{id}")
-	@PreAuthorize("@per.hasPermission('sample:document:del')")
 	public R removeById(@PathVariable("id") Integer id) {
 		return documentService.removeById(id) ? R.ok()
 				: R.failed(BaseResultCode.UPDATE_DATABASE_ERROR, "通过id删除文档表，用于演示数据权限失败");
