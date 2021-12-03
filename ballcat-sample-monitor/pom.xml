@@ -19,13 +19,8 @@
         </dependency>
         <!--webmvc-->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <!--undertow容器-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-undertow</artifactId>
+            <groupId>com.hccake</groupId>
+            <artifactId>ballcat-spring-boot-starter-web</artifactId>
         </dependency>
         <!-- spring-security -->
         <dependency>
