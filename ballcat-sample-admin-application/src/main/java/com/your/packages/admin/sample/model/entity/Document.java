@@ -5,9 +5,9 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.hccake.extend.mybatis.plus.alias.TableAlias;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
+
 import java.time.LocalDateTime;
 
 /**
@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 @TableAlias("t")
 @Data
 @TableName("sample_document")
-@ApiModel(value = "文档表，用于演示数据权限")
+@Schema(title = "用户文档")
 public class Document {
 
 	private static final long serialVersionUID = 1L;
@@ -27,39 +27,39 @@ public class Document {
 	 * ID
 	 */
 	@TableId
-	@ApiModelProperty(value = "ID")
+	@Schema(title = "ID")
 	private Integer id;
 
 	/**
 	 * 文档名称
 	 */
-	@ApiModelProperty(value = "文档名称")
+	@Schema(title = "文档名称")
 	private String name;
 
 	/**
 	 * 所属用户ID
 	 */
-	@ApiModelProperty(value = "所属用户ID")
+	@Schema(title = "所属用户ID")
 	private Integer userId;
 
 	/**
 	 * 所属组织ID
 	 */
-	@ApiModelProperty(value = "所属组织ID")
+	@Schema(title = "所属组织ID")
 	private Integer organizationId;
 
 	/**
 	 * 创建时间
 	 */
 	@TableField(fill = FieldFill.INSERT)
-	@ApiModelProperty(value = "创建时间")
+	@Schema(title = "创建时间")
 	private LocalDateTime createTime;
 
 	/**
 	 * 更新时间
 	 */
 	@TableField(fill = FieldFill.INSERT_UPDATE)
-	@ApiModelProperty(value = "更新时间")
+	@Schema(title = "更新时间")
 	private LocalDateTime updateTime;
 
 }

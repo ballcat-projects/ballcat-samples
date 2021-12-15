@@ -19,6 +19,9 @@ spring:
   messages:
     # basename 中的 . 和 / 都可以用来表示文件层级，默认的 basename 是 messages
     basename: 'ballcat-*, org.springframework.security.messages, i18n.messages, i18n/attributes'
+#  mvc:
+#    pathmatch:
+#      matching-strategy: ant-path-matcher
 
 # Spring Boot Actuator 暴露监控端口
 management:
@@ -78,6 +81,7 @@ ballcat:
           - /v3/api-docs/**
           - /swagger-resources/**
           - /swagger-ui/**
+          - /swagger-ui.html
           - /webjars/**
           - /bycdao-ui/**
           - /favicon.ico
@@ -90,32 +94,41 @@ ballcat:
     auth: true
     secret-id: 'ballcat-monitor'
     secret-key: '=BallCat-Monitor'
-  swagger:
+  openapi:
     title: BallCat-Admin Docs
-    group-name: ballcat-admin
-    documentation-type: swagger_2
     description: BallCat 后台管理服务Api文档
-    version: 0.0.1
-    license: Powered By BallCat
-    licenseUrl: http://www.ballcat.cn/
-    terms-of-service-url: http://www.ballcat.cn/
+    version: ${project.version}
+    terms-of-service: http://www.ballcat.cn/
+    license:
+      name: Powered By BallCat
+      url: http://www.ballcat.cn/
     contact:
       name: Hccake
       email: chengbohua@foxmail.com
       url: https://github.com/Hccake
-    authorization:
-      name: oauth2   #由于Knife4j是根据名称进行判断的，所以必须叫oauth2
-      authorization-scope-list:
-        - scope: server
-          description: server all
-      token-url: http://ballcat-admin:8080/oauth/token
-    aggregator:
-      provider-resources:
-        - { name: ballcat-api,  url: http://ballcat-api:9090/v2/api-docs, swagger-version: 2.0 }
+    security-schemes:
+      apiKey:
+        type: APIKEY
+        in: HEADER
+        name: 'api-key'
+      oauth2:
+        type: OAUTH2
+        flows:
+          password:
+            token-url: http://ballcat-admin:8089/oauth/token
+    global-security-requirements:
+      oauth2: []
+      apiKey: []
 
-
-
-
-
-
+springdoc:
+  swagger-ui:
+    oauth:
+      client-id: test
+      client-secret: test
+    display-request-duration: true
+    disable-swagger-default-url: true
+    persist-authorization: true
+    urls:
+      - { name: 'admin', url: '/v3/api-docs' }
+      - { name: 'api', url: 'http:///ballcat-api:9090/v3/api-docs' }
 

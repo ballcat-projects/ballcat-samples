@@ -1,8 +1,14 @@
 package com.hccake.ballcat.api.modules.api.controller;
 
 import com.hccake.ballcat.common.core.exception.BusinessException;
-import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.*;
+import io.swagger.v3.oas.annotations.Operation;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -16,7 +22,7 @@ import java.time.LocalDateTime;
 @RestController
 public class TestController {
 
-	@ApiOperation("测试地址")
+	@Operation(summary = "测试地址")
 	@PostMapping("/test")
 	public String test() {
 		return "Hello word!";

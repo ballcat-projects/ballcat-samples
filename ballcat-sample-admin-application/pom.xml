@@ -14,24 +14,33 @@
 
 
     <dependencies>
+		<!-- 权限管理 -->
 		<dependency>
 			<groupId>com.hccake</groupId>
 			<artifactId>ballcat-admin-core</artifactId>
 		</dependency>
+		<!-- websocket -->
 		<dependency>
 			<groupId>com.hccake</groupId>
 			<artifactId>ballcat-admin-websocket</artifactId>
 		</dependency>
+		<!-- 国际化 -->
 		<dependency>
 			<groupId>com.hccake</groupId>
 			<artifactId>ballcat-admin-i18n</artifactId>
 		</dependency>
+		<!-- 定时任务 -->
         <dependency>
             <groupId>com.hccake</groupId>
             <artifactId>ballcat-spring-boot-starter-job</artifactId>
         </dependency>
+		<!-- 数据权限 -->
+		<dependency>
+			<groupId>com.hccake</groupId>
+			<artifactId>ballcat-spring-boot-starter-datascope</artifactId>
+		</dependency>
 
-        <!--mysql驱动-->
+		<!--mysql驱动-->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -46,29 +55,21 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
-		<!-- swagger 文档聚合 -->
+		<!-- openapi 文档聚合 -->
 		<dependency>
 			<groupId>com.hccake</groupId>
-			<artifactId>ballcat-spring-boot-starter-swagger</artifactId>
+			<artifactId>ballcat-spring-boot-starter-openapi</artifactId>
 		</dependency>
-		<!-- swagger springfox ui -->
+		<!-- springdoc swagger-ui -->
 		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger-ui</artifactId>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
 		</dependency>
 		<!-- swagger 增强版 ui -->
 		<dependency>
 			<groupId>com.github.xiaoymin</groupId>
-			<artifactId>knife4j-spring-ui</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.hccake</groupId>
-			<artifactId>ballcat-spring-boot-starter-datascope</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-oauth2-client</artifactId>
+			<artifactId>knife4j-springdoc-ui</artifactId>
+			<version>3.0.3</version>
 		</dependency>
 
 

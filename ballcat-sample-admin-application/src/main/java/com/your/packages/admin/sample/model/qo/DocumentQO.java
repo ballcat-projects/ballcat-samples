@@ -1,8 +1,8 @@
 package com.your.packages.admin.sample.model.qo;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
+import org.springdoc.api.annotations.ParameterObject;
 
 /**
  * 文档表，用于演示数据权限 查询对象
@@ -10,7 +10,8 @@ import lombok.Data;
  * @author hccake 2021-09-22 19:22:44
  */
 @Data
-@ApiModel(value = "文档表，用于演示数据权限查询对象")
+@Schema(title = "用户文档查询对象")
+@ParameterObject
 public class DocumentQO {
 
 	private static final long serialVersionUID = 1L;
@@ -18,7 +19,7 @@ public class DocumentQO {
 	/**
 	 * ID
 	 */
-	@ApiModelProperty(value = "ID")
+	@Schema(title = "ID")
 	private Integer id;
 
 }
