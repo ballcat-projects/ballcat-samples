@@ -115,7 +115,7 @@ ballcat:
         type: OAUTH2
         flows:
           password:
-            token-url: http://ballcat-admin:8089/oauth/token
+            token-url: http://ballcat-admin:8080/oauth/token
     global-security-requirements:
       oauth2: []
       apiKey: []

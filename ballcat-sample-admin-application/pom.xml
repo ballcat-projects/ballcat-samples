@@ -55,10 +55,10 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
-		<!-- openapi 文档聚合 -->
+		<!-- openapi 扩展处理 -->
 		<dependency>
 			<groupId>com.hccake</groupId>
-			<artifactId>ballcat-spring-boot-starter-openapi</artifactId>
+			<artifactId>ballcat-extend-openapi</artifactId>
 		</dependency>
 		<!-- springdoc swagger-ui -->
 		<dependency>
