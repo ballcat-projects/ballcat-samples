@@ -7,3 +7,10 @@ spring:
     host: ballcat-redis
     password: ''
     port: 6379
+
+
+springdoc:
+  swagger-ui:
+    urls:
+      - { name: 'admin', url: '/v3/api-docs' }
+      - { name: 'api', url: 'http://ballcat-api/v3/api-docs' }

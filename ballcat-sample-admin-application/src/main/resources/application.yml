@@ -128,7 +128,3 @@ springdoc:
     display-request-duration: true
     disable-swagger-default-url: true
     persist-authorization: true
-    urls:
-      - { name: 'admin', url: '/v3/api-docs' }
-      - { name: 'api', url: 'http:///ballcat-api:9090/v3/api-docs' }
-
