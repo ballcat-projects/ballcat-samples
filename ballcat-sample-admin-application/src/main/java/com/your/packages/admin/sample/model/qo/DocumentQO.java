@@ -1,5 +1,6 @@
 package com.your.packages.admin.sample.model.qo;
 
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import org.springdoc.api.annotations.ParameterObject;
@@ -19,7 +20,7 @@ public class DocumentQO {
 	/**
 	 * ID
 	 */
-	@Schema(title = "ID")
+	@Parameter(description = "ID")
 	private Integer id;
 
 }
