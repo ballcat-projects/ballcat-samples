@@ -58,7 +58,7 @@ public class DocumentController {
 	@Operation(summary = "新增用户文档")
 	@CreateOperationLogging(msg = "新增文档表，用于演示数据权限")
 	@PostMapping
-	public R save(@RequestBody Document document) {
+	public R<Void> save(@RequestBody Document document) {
 		return documentService.save(document) ? R.ok()
 				: R.failed(BaseResultCode.UPDATE_DATABASE_ERROR, "新增文档表，用于演示数据权限失败");
 	}
@@ -71,7 +71,7 @@ public class DocumentController {
 	@Operation(summary = "通过id删除用户文档")
 	@DeleteOperationLogging(msg = "通过id删除文档表，用于演示数据权限")
 	@DeleteMapping("/{id}")
-	public R removeById(@PathVariable("id") Integer id) {
+	public R<Void> removeById(@PathVariable("id") Integer id) {
 		return documentService.removeById(id) ? R.ok()
 				: R.failed(BaseResultCode.UPDATE_DATABASE_ERROR, "通过id删除文档表，用于演示数据权限失败");
 	}
