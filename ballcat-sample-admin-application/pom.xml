@@ -44,6 +44,11 @@
 			<groupId>com.hccake</groupId>
 			<artifactId>ballcat-spring-boot-starter-easyexcel</artifactId>
 		</dependency>
+		<!-- 幂等组件 -->
+		<dependency>
+			<groupId>com.hccake</groupId>
+			<artifactId>ballcat-common-idempotent</artifactId>
+		</dependency>
 
 		<!--mysql驱动-->
         <dependency>
