@@ -1,0 +1,22 @@
+logging:
+  level:
+    root: debug
+
+server:
+  port: 8800
+#spring:
+#  redis:
+#    host: ballcat-redis
+#    password: ''
+#    port: 6369
+
+ballcat:
+  websocket:
+    concurrent:
+      enable: true
+      send-time-limit: 5000
+      buffer-size-limit: 102400
+      overflow-strategy: terminate
+    with-sockjs: false
+    #allowed-origins: '/ws'
+    message-distributor: local
