@@ -1,0 +1,12 @@
+server:
+  port: 8900
+
+spring:
+  profiles:
+    active: @profiles.active@
+  messages:
+    basename: 'attributes'
+
+logging:
+  level:
+    root: debug
