@@ -18,7 +18,9 @@ public class WebsocketSendController {
 	}
 
 	/**
-	 * 广播测试
+	 * 广播, 测试并发 webSession 发送
+	 *
+	 * ps: 如果配置中不开启并发支持，会导致并发调用时报连接关闭的异常信息
 	 * @return String
 	 */
 	@GetMapping("broadcast")
