@@ -1,4 +1,4 @@
-package com.ballcat.sample.websocket;
+package com.ballcat.sample.websocket.controller;
 
 import com.hccake.ballcat.common.websocket.distribute.MessageDO;
 import com.hccake.ballcat.common.websocket.distribute.MessageDistributor;

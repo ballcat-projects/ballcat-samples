@@ -1,5 +1,6 @@
-package com.ballcat.sample.websocket;
+package com.ballcat.sample.websocket.config;
 
+import com.ballcat.sample.websocket.component.MyHandshakInteceptor;
 import com.hccake.ballcat.autoconfigure.websocket.SockJsServiceConfigurer;
 import com.hccake.ballcat.autoconfigure.websocket.WebSocketProperties;
 import com.hccake.ballcat.common.websocket.session.SessionKeyGenerator;

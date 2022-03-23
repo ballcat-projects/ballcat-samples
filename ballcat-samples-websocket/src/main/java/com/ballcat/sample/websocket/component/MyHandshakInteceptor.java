@@ -1,4 +1,4 @@
-package com.ballcat.sample.websocket;
+package com.ballcat.sample.websocket.component;
 
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;

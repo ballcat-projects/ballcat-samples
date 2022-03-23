@@ -4,6 +4,11 @@ logging:
 
 server:
   port: 8800
+
+
+spring:
+  thymeleaf:
+    cache: false # 关闭缓存，否则切换测试页面会有问题
 #spring:
 #  redis:
 #    host: ballcat-redis
@@ -17,6 +22,6 @@ ballcat:
       send-time-limit: 5000
       buffer-size-limit: 102400
       overflow-strategy: terminate
-    with-sockjs: false
+    with-sockjs: true
     #allowed-origins: '/ws'
     message-distributor: local

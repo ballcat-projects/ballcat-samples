@@ -21,6 +21,12 @@
 			<groupId>com.hccake</groupId>
 			<artifactId>ballcat-spring-boot-starter-websocket</artifactId>
 		</dependency>
+
+		<!-- thymeleaf 模板引擎，用来渲染测试页面的 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
 	</dependencies>
 
 </project>

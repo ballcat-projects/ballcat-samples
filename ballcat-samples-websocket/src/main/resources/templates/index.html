@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title >WebSocket 测试</title>
+</head>
+<body>
+<div style="font-size: 24px;font-weight: 1000; margin-bottom: 0">
+    <span th:if="${withSockjs}">SockJs 测试</span>
+    <span th:unless="${withSockjs}">原生 WebSocket 测试</span>
+</div>
+<div style="color: #cb6565; margin: 5px 0;">打开控制台，在 network 中可以更详细的查看 ws 的消息交互</div>
+<form onsubmit="return false">
+    <textarea name="message" style="width: 400px; height: 100px"></textarea>
+
+    <input type="button" value="发送数据" onclick="send(this.form.message.value)">
+    <input type="button" value="发送心跳" onclick="heartbeat()">
+
+    <h3>服务端输出：</h3>
+
+    <textarea id="responseText" style="width: 400px; height: 250px" readonly></textarea>
+
+    <input type="button" value="清空数据" onclick="document.getElementById('responseText').value = ''">
+</form>
+
+<script src="./index.js"></script>
+
+<script th:unless="${withSockjs}">
+    if (window.WebSocket) {
+        initWebSocketClient(new WebSocket('ws://localhost:8800/ws?name=websocket'))
+    } else {
+        alert('当前浏览器不支持 WebSocket! 请切换使用 sock-js 方案')
+    }
+</script>
+
+<script th:if="${withSockjs}" src="http://cdn.jsdelivr.net/npm/sockjs-client"></script>
+<script th:if="${withSockjs}">
+    initWebSocketClient(new SockJS('http://localhost:8800/ws?name=sockjs'))
+</script>
+
+
+</body>
+</html>
