@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title >WebSocket 测试</title>
+    <title>WebSocket 测试</title>
 </head>
 <body>
 <div style="font-size: 24px;font-weight: 1000; margin-bottom: 0">
@@ -11,10 +11,16 @@
 </div>
 <div style="color: #cb6565; margin: 5px 0;">打开控制台，在 network 中可以更详细的查看 ws 的消息交互</div>
 <form onsubmit="return false">
-    <textarea name="message" style="width: 400px; height: 100px"></textarea>
 
+
+    <textarea name="message" id="requestText" style="width: 400px; height: 100px"></textarea>
     <input type="button" value="发送数据" onclick="send(this.form.message.value)">
-    <input type="button" value="发送心跳" onclick="heartbeat()">
+    <input type="button" value="清空数据" onclick="document.getElementById('requestText').value = ''">
+    <div>
+        <input type="button" value="心跳消息" onclick="heartbeat()">
+        <input type="button" value="sayHello(中文)" onclick="sayHello('中文')">
+        <input type="button" value="sayHello(英文)" onclick="sayHello('English')">
+    </div>
 
     <h3>服务端输出：</h3>
 

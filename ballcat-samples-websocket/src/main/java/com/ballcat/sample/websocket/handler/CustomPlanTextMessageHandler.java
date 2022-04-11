@@ -1,4 +1,4 @@
-package com.ballcat.sample.websocket.component;
+package com.ballcat.sample.websocket.handler;
 
 import com.hccake.ballcat.common.websocket.handler.PlanTextMessageHandler;
 import org.springframework.stereotype.Component;

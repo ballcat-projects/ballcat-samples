@@ -31,5 +31,15 @@ function send(message) {
 
 function heartbeat() {
     // 正式环境应该定时发送心跳，避免断开连接
-    send(JSON.stringify({type: 'ping'}))
+    let responseTextDom = document.getElementById('requestText')
+    responseTextDom.value = JSON.stringify({type: 'ping'})
+}
+
+function sayHello(language) {
+    let content = {
+        type: 'say-hello',
+        language: language
+    };
+    let responseTextDom = document.getElementById('requestText')
+    responseTextDom.value = JSON.stringify(content)
 }
