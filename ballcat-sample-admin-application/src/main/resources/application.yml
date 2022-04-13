@@ -107,16 +107,17 @@ ballcat:
         name: Hccake
         email: chengbohua@foxmail.com
         url: https://github.com/Hccake
-    security-schemes:
-      apiKey:
-        type: APIKEY
-        in: HEADER
-        name: 'api-key'
-      oauth2:
-        type: OAUTH2
-        flows:
-          password:
-            token-url: http://ballcat-admin:8080/oauth/token
+    components:
+      security-schemes:
+        apiKey:
+          type: APIKEY
+          in: HEADER
+          name: 'api-key'
+        oauth2:
+          type: OAUTH2
+          flows:
+            password:
+              token-url: http://ballcat-admin:8080/oauth/token
     global-security-requirements:
       oauth2: []
       apiKey: []
