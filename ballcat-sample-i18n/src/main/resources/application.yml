@@ -5,8 +5,4 @@ spring:
   profiles:
     active: @profiles.active@
   messages:
-    basename: 'attributes'
-
-logging:
-  level:
-    root: debug
+    basename: 'attributes, validation'
