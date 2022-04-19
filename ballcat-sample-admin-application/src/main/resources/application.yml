@@ -10,12 +10,12 @@ spring:
   boot:
     admin:
       client:
-        # 优先使用 ip 访问 client 端
-        instance:
-          prefer-ip: true
         url: http://ballcat-monitor:9999
         username: admin
         password: 123456
+        # 优先使用 ip 访问 client 端
+        instance:
+          service-host-type: ip
   messages:
     # basename 中的 . 和 / 都可以用来表示文件层级，默认的 basename 是 messages
     basename: 'ballcat-*, org.springframework.security.messages, i18n.messages, i18n/attributes'
@@ -118,9 +118,10 @@ ballcat:
           flows:
             password:
               token-url: http://ballcat-admin:8080/oauth/token
-    global-security-requirements:
-      oauth2: []
-      apiKey: []
+    security:
+      - oauth2: []
+      - apiKey: []
+
 
 springdoc:
   swagger-ui:
