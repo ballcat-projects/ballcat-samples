@@ -1,0 +1,12 @@
+logging:
+  level:
+    root: debug
+
+server:
+  port: 8900
+
+ballcat:
+  security:
+    oauth2:
+      authorizationserver:
+        login-captcha-enabled: false

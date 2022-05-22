@@ -21,7 +21,8 @@
         <module>ballcat-sample-pay</module>
 		<module>ballcat-samples-websocket</module>
 		<module>ballcat-sample-i18n</module>
-	</modules>
+        <module>ballcat-samples-auth-server</module>
+    </modules>
 
 	<properties>
 		<version>0.8.0-SNAPSHOT</version>
@@ -42,4 +43,23 @@
 		</repository>
 	</repositories>
 
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>io.spring.javaformat</groupId>
+				<artifactId>spring-javaformat-maven-plugin</artifactId>
+				<version>${spring-javaformat-checkstyle.version}</version>
+				<executions>
+					<execution>
+						<phase>validate</phase>
+						<inherited>false</inherited>
+						<goals>
+							<goal>validate</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 </project>
