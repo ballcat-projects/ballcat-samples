@@ -10,3 +10,6 @@ ballcat:
     oauth2:
       authorizationserver:
         login-captcha-enabled: false
+      resourceserver:
+        ignore-urls:
+          - /public/*

@@ -2,12 +2,15 @@ package com.ballcat.sample.auth.test;
 
 import com.ballcat.sample.auth.AuthServerApplication;
 import com.hccake.ballcat.common.util.JsonUtils;
+import com.jayway.jsonpath.JsonPath;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpHeaders;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
@@ -20,6 +23,7 @@ import static org.springframework.security.test.web.servlet.request.SecurityMock
 /**
  * @author hccake
  */
+@Slf4j
 @AutoConfigureMockMvc
 @SpringBootTest(classes = AuthServerApplication.class)
 public class AuthTest {
@@ -90,6 +94,40 @@ public class AuthTest {
 		return MockMvcRequestBuilders.post(LOGIN_PATH).queryParam("grant_type", "password")
 				.queryParam("username", username).queryParam("password", password)
 				.with(httpBasic(clientId, clientSecret));
+	}
+
+	@Test
+	void anonymousTest() throws Exception {
+
+		String helloUri = "/public/hello";
+
+		// @formatter:off
+		// 匿名访问
+		mockMvc.perform(MockMvcRequestBuilders.get(helloUri))
+				.andExpect(MockMvcResultMatchers.status().isOk())
+				.andExpect(MockMvcResultMatchers.content().string("hello: anonymousUser"));
+
+		// 携带错误的 token 进行访问
+		mockMvc.perform(
+						MockMvcRequestBuilders.get(helloUri)
+								.header(HttpHeaders.AUTHORIZATION, "Bearer errorToken"))
+				.andExpect(MockMvcResultMatchers.status().isOk())
+				.andExpect(MockMvcResultMatchers.content().string("hello: anonymousUser"));
+
+
+		// 登陆后进行访问
+		MockHttpServletRequestBuilder requestBuilder = loginRequestBuilder("admin", "a123456", "admin", "admin");
+		MvcResult mvcResult = mockMvc.perform(requestBuilder).andReturn();
+
+		String contentAsString = mvcResult.getResponse().getContentAsString();
+		String accessToken = JsonPath.read(contentAsString, "$.access_token");
+
+		mockMvc.perform(
+				MockMvcRequestBuilders.get(helloUri)
+						.header(HttpHeaders.AUTHORIZATION, "Bearer " + accessToken))
+				.andExpect(MockMvcResultMatchers.status().isOk())
+				.andExpect(MockMvcResultMatchers.content().string("hello: admin"));
+		// @formatter:on
 	}
 
 }
