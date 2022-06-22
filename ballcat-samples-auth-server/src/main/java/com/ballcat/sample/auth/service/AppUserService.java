@@ -2,7 +2,7 @@ package com.ballcat.sample.auth.service;
 
 import cn.hutool.core.collection.ListUtil;
 import com.ballcat.sample.auth.model.AppUser;
-import com.hccake.ballcat.common.security.util.PasswordUtils;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,12 +13,16 @@ import java.util.List;
 @Service
 public class AppUserService {
 
+	private final List<AppUser> appUserStore;
+
 	// @formatter:off
-	private final List<AppUser> appUserStore = ListUtil.toList(
-			new AppUser(1, "appUser1", PasswordUtils.encode("a123456"), "app用户1", "15800000000"),
-			new AppUser(2, "appUser2", PasswordUtils.encode("b123456"), "app用户2", "15800000001"),
-			new AppUser(3, "appUser3", PasswordUtils.encode("c123456"), "app用户3", "15800000002")
-	);
+	public AppUserService(PasswordEncoder passwordEncoder) {
+		appUserStore = ListUtil.toList(
+				new AppUser(1, "appUser1", passwordEncoder.encode("a123456"), "app用户1", "15800000000"),
+				new AppUser(2, "appUser2", passwordEncoder.encode("b123456"), "app用户2", "15800000001"),
+				new AppUser(3, "appUser3", passwordEncoder.encode("c123456"), "app用户3", "15800000002")
+		);
+	}
 
 	/**
 	 * 查询用户，实际项目中应该去查询数据库

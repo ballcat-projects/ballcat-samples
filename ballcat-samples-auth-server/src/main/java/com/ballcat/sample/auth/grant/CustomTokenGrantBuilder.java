@@ -9,15 +9,14 @@ import org.springframework.security.oauth2.provider.CompositeTokenGranter;
 import org.springframework.security.oauth2.provider.OAuth2RequestFactory;
 import org.springframework.security.oauth2.provider.TokenGranter;
 import org.springframework.security.oauth2.provider.token.AuthorizationServerTokenServices;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 /**
  * 自定义的 tokenGrant 扩展，添加手机号登录支持
+ *
  * @author hccake
  */
-@Component
 public class CustomTokenGrantBuilder extends TokenGrantBuilder {
 
 	public CustomTokenGrantBuilder(AuthenticationManager authenticationManager) {
@@ -38,4 +37,5 @@ public class CustomTokenGrantBuilder extends TokenGrantBuilder {
 		OAuth2RequestFactory requestFactory = endpoints.getOAuth2RequestFactory();
 		return new MobileTokenGranter(getAuthenticationManager(), tokenServices, clientDetailsService, requestFactory);
 	}
+
 }

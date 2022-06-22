@@ -65,11 +65,12 @@ public class MobileTokenGranter extends AbstractTokenGranter {
 			SecurityContextHolder.getContext().setAuthentication(authentication);
 		}
 		catch (AccountStatusException ase) {
-			//covers expired, locked, disabled cases (mentioned in section 5.2, draft 31)
+			// covers expired, locked, disabled cases (mentioned in section 5.2, draft 31)
 			throw new InvalidGrantException(ase.getMessage());
 		}
 		catch (BadCredentialsException e) {
-			// If the username/password are wrong the spec says we should send 400/invalid grant
+			// If the username/password are wrong the spec says we should send 400/invalid
+			// grant
 			throw new InvalidGrantException(e.getMessage());
 		}
 

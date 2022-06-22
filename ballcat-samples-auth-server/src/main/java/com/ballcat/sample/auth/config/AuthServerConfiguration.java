@@ -1,10 +1,13 @@
 package com.ballcat.sample.auth.config;
 
+import com.ballcat.sample.auth.grant.CustomTokenGrantBuilder;
+import com.hccake.ballcat.auth.authentication.TokenGrantBuilder;
 import com.hccake.ballcat.auth.configurer.OAuth2ClientConfigurer;
-import com.hccake.ballcat.common.security.util.PasswordUtils;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
 
@@ -29,16 +32,21 @@ public class AuthServerConfiguration {
 	 */
 	@Bean
 	@ConditionalOnMissingBean
-	public OAuth2ClientConfigurer oAuth2ClientConfigurer() {
+	public OAuth2ClientConfigurer oAuth2ClientConfigurer(PasswordEncoder passwordEncoder) {
 		// 内存中注册两个客户端 ui 和 app
 		// @formatter:off
 		return (configurer) -> {
 			configurer.inMemory()
-					.withClient("admin").secret(PasswordUtils.encode("admin")).scopes("all")
+					.withClient("admin").secret(passwordEncoder.encode("admin")).scopes("all")
 					.and()
-					.withClient("app").secret(PasswordUtils.encode("app")).scopes("all");
+					.withClient("app").secret(passwordEncoder.encode("app")).scopes("all");
 		};
 		// @formatter:on
+	}
+
+	@Bean
+	public TokenGrantBuilder tokenGrantBuilder(AuthenticationManager authenticationManager) {
+		return new CustomTokenGrantBuilder(authenticationManager);
 	}
 
 }

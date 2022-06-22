@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
 	@GetMapping("user-info")
-	public UserInfo userInfo(){
+	public UserInfo userInfo() {
 		User user = SecurityUtils.getUser();
 		UserInfo sysUserInfo = new UserInfo();
 		sysUserInfo.setUserId(user.getUserId());
@@ -23,4 +23,5 @@ public class UserController {
 		sysUserInfo.setNickname(user.getNickname());
 		return sysUserInfo;
 	}
+
 }

@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class SysUser{
+public class SysUser {
 
 	private Integer userId;
 
@@ -19,4 +19,5 @@ public class SysUser{
 	private String password;
 
 	private String nickname;
+
 }

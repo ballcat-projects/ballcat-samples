@@ -78,8 +78,8 @@ public class AuthTest {
 		String accessToken = (String) map.get("access_token");
 
 		// 登录后再查询,可以获取到信息
-		mockMvc.perform(MockMvcRequestBuilders.get(USER_INFO_PATH)
-						.header(HttpHeaders.AUTHORIZATION, "Bearer " + accessToken))
+		mockMvc.perform(
+				MockMvcRequestBuilders.get(USER_INFO_PATH).header(HttpHeaders.AUTHORIZATION, "Bearer " + accessToken))
 				.andExpect(MockMvcResultMatchers.status().isOk())
 				.andExpect(MockMvcResultMatchers.jsonPath("$.nickname").value("app用户1"))
 				.andDo(MockMvcResultHandlers.print());

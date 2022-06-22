@@ -15,10 +15,12 @@ import java.util.Map;
 
 /**
  * 扩展登陆后返回的数据信息
+ *
  * @author hccake
  */
 @Component
 public class CustomTokenEnhancer implements TokenEnhancer {
+
 	@Override
 	public OAuth2AccessToken enhance(OAuth2AccessToken accessToken, OAuth2Authentication authentication) {
 		Authentication userAuthentication = authentication.getUserAuthentication();
@@ -54,4 +56,5 @@ public class CustomTokenEnhancer implements TokenEnhancer {
 		sysUserInfo.setNickname(user.getNickname());
 		return sysUserInfo;
 	}
+
 }

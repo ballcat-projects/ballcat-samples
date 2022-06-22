@@ -2,8 +2,7 @@ package com.ballcat.sample.auth.service;
 
 import cn.hutool.core.collection.ListUtil;
 import com.ballcat.sample.auth.model.SysUser;
-import com.hccake.ballcat.common.security.util.PasswordUtils;
-import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,15 +11,19 @@ import java.util.List;
  * @author hccake
  */
 @Service
-@RequiredArgsConstructor
 public class SysUserService {
 
+	private final List<SysUser> sysUserStore;
+
 	// @formatter:off
-	private final List<SysUser> sysUserStore = ListUtil.toList(
-			new SysUser(1, "admin", PasswordUtils.encode("a123456"), "超级管理员"),
-			new SysUser(2, "test1", PasswordUtils.encode("b123456"), "测试用户1"),
-			new SysUser(3, "test2", PasswordUtils.encode("c123456"), "测试用户2")
-	);
+	public SysUserService(PasswordEncoder passwordEncoder) {
+		sysUserStore = ListUtil.toList(
+				new SysUser(1, "admin", passwordEncoder.encode("a123456"), "超级管理员"),
+				new SysUser(2, "test1", passwordEncoder.encode("b123456"), "测试用户1"),
+				new SysUser(3, "test2", passwordEncoder.encode("c123456"), "测试用户2")
+		);
+	}
+
 
 	/**
 	 * 查询用户，实际项目中应该去查询数据库
