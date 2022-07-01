@@ -39,7 +39,9 @@ public class AuthServerConfiguration {
 			configurer.inMemory()
 					.withClient("admin").secret(passwordEncoder.encode("admin")).scopes("all")
 					.and()
-					.withClient("app").secret(passwordEncoder.encode("app")).scopes("all");
+					.withClient("app").secret(passwordEncoder.encode("app")).scopes("all")
+					.and()
+					.withClient("test").secret(passwordEncoder.encode("test")).scopes("all");
 		};
 		// @formatter:on
 	}
