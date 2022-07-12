@@ -62,6 +62,8 @@ xxl:
 
 # BallCat 相关配置
 ballcat:
+  system:
+    password-rule: ^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d()`~!@#$%^&*-_+=|{}\[\]:;'<>,.?/]{6,16}$
   websocket:
     message-distributor: redis
   security:
@@ -117,7 +119,7 @@ ballcat:
           type: OAUTH2
           flows:
             password:
-              token-url: http://ballcat-admin:8080/oauth/token
+              token-url: /oauth/token
     security:
       - oauth2: []
       - apiKey: []
