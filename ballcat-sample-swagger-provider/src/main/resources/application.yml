@@ -55,17 +55,18 @@ ballcat:
           - /bycdao-ui/**
           - /favicon.ico
   openapi:
-    title: BallCat-api Docs
-    description: BallCat ApifuwuApi文档
-    version: ${project.version}
-    terms-of-service: http://www.ballcat.cn/
-    license:
-      name: Powered By BallCat
-      url: http://www.ballcat.cn/
-    contact:
-      name: Hccake
-      email: chengbohua@foxmail.com
-      url: https://github.com/Hccake
+    info:
+      title: BallCat-api Docs
+      description: BallCat ApifuwuApi文档
+      version: ${project.version}
+      terms-of-service: http://www.ballcat.cn/
+      license:
+        name: Powered By BallCat
+        url: http://www.ballcat.cn/
+      contact:
+        name: Hccake
+        email: chengbohua@foxmail.com
+        url: https://github.com/Hccake
     cors-config:
       enabled: true
       allowed-origins:
