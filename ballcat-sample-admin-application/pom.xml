@@ -49,6 +49,11 @@
 			<groupId>com.hccake</groupId>
 			<artifactId>ballcat-common-idempotent</artifactId>
 		</dependency>
+		<!-- 邮件 -->
+		<dependency>
+			<groupId>com.hccake</groupId>
+			<artifactId>ballcat-spring-boot-starter-mail</artifactId>
+		</dependency>
 
 		<!--mysql驱动-->
         <dependency>

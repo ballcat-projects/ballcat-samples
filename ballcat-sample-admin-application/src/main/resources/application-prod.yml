@@ -7,6 +7,20 @@ spring:
     host: ballcat-redis
     password: ''
     port: 6379
+  mail:
+    host: smtp.qq.com
+    port: 465
+    username: xxxx@foxmail.com
+    password: xxxxxx
+    default-encoding: UTF-8
+    properties:
+      from: BallCat<xxxx@foxmail.com>
+      mail.smtp.auth: true
+      mail.smtp.starttls.enable: true
+      mail.smtp.starttls.required: true
+      mail.smtp.socketFactory.port: 465
+      mail.smtp.socketFactory.class: javax.net.ssl.SSLSocketFactory
+      mail.smtp.socketFactory.fallback: false
 
 # 日志文件地址，配置此属性以便 SBA 在线查看日志
 logging:
