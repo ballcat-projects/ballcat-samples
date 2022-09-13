@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <artifactId>ballcat-samples</artifactId>
-        <groupId>com.hccake</groupId>
-        <version>${revision}</version>
-    </parent>
-    <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<parent>
+		<artifactId>ballcat-samples</artifactId>
+		<groupId>com.hccake</groupId>
+		<version>${revision}</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
 
-    <artifactId>ballcat-sample-admin-application</artifactId>
-    <packaging>jar</packaging>
+	<artifactId>ballcat-sample-admin-application</artifactId>
+	<packaging>jar</packaging>
 
 
-    <dependencies>
+	<dependencies>
 		<!-- 权限管理 -->
 		<dependency>
 			<groupId>com.hccake</groupId>
@@ -30,10 +28,10 @@
 			<artifactId>ballcat-admin-i18n</artifactId>
 		</dependency>
 		<!-- 定时任务 -->
-        <dependency>
-            <groupId>com.hccake</groupId>
-            <artifactId>ballcat-spring-boot-starter-job</artifactId>
-        </dependency>
+		<dependency>
+			<groupId>com.hccake</groupId>
+			<artifactId>ballcat-spring-boot-starter-job</artifactId>
+		</dependency>
 		<!-- 数据权限 -->
 		<dependency>
 			<groupId>com.hccake</groupId>
@@ -56,19 +54,19 @@
 		</dependency>
 
 		<!--mysql驱动-->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-        </dependency>
-        <!--监控Client-->
-        <dependency>
-            <groupId>de.codecentric</groupId>
-            <artifactId>spring-boot-admin-starter-client</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+		<!--监控Client-->
+		<dependency>
+			<groupId>de.codecentric</groupId>
+			<artifactId>spring-boot-admin-starter-client</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
 
 		<!-- openapi 扩展处理 -->
 		<dependency>
@@ -93,29 +91,38 @@
 			<artifactId>spring-boot-starter-captcha</artifactId>
 			<version>1.3.0</version>
 		</dependency>
-
+		<dependency>
+			<groupId>cloud.tianai.captcha</groupId>
+			<artifactId>tianai-captcha-springboot-starter</artifactId>
+			<version>1.3.3</version>
+		</dependency>
+		<dependency>
+			<groupId>cn.hutool</groupId>
+			<artifactId>hutool-json</artifactId>
+		</dependency>
+		<!-- maven 导入 -->
 		<!-- API, java.xml.bind module -->
 		<!-- add it when jdk11 -->
-<!--		<dependency>-->
-<!--			<groupId>jakarta.xml.bind</groupId>-->
-<!--			<artifactId>jakarta.xml.bind-api</artifactId>-->
-<!--			<version>3.0.1</version>-->
-<!--		</dependency>-->
-<!--		<dependency>-->
-<!--			<groupId>org.glassfish.jaxb</groupId>-->
-<!--			<artifactId>jaxb-runtime</artifactId>-->
-<!--			<version>3.0.1</version>-->
-<!--		</dependency>-->
+		<!--		<dependency>-->
+		<!--			<groupId>jakarta.xml.bind</groupId>-->
+		<!--			<artifactId>jakarta.xml.bind-api</artifactId>-->
+		<!--			<version>3.0.1</version>-->
+		<!--		</dependency>-->
+		<!--		<dependency>-->
+		<!--			<groupId>org.glassfish.jaxb</groupId>-->
+		<!--			<artifactId>jaxb-runtime</artifactId>-->
+		<!--			<version>3.0.1</version>-->
+		<!--		</dependency>-->
 	</dependencies>
 
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
 
 </project>
