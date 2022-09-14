@@ -35,6 +35,11 @@ aj:
   captcha:
     waterMark: 'BallCat'
     cacheType: redis
+    
+# 天爱图形验证码
+captcha:
+  secondary:
+    enabled: true
 
 # mybatis-plus相关配置
 mybatis-plus:
