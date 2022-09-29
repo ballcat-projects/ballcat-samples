@@ -1,7 +1,7 @@
 package com.ballcat.sample.auth;
 
 import com.hccake.ballcat.auth.annotation.EnableOauth2AuthorizationServer;
-import com.hccake.ballcat.common.security.annotation.EnableOauth2ResourceServer;
+import org.ballcat.springsecurity.oauth2.server.resource.annotation.EnableOauth2ResourceServer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

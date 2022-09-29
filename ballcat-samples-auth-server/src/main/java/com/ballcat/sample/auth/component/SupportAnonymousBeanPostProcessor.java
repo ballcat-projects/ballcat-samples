@@ -2,8 +2,8 @@ package com.ballcat.sample.auth.component;
 
 import cn.hutool.core.collection.ListUtil;
 import cn.hutool.core.util.ReflectUtil;
-import com.hccake.ballcat.common.security.oauth2.server.resource.ResourceServerWebSecurityConfigurerAdapter;
-import com.hccake.ballcat.common.security.properties.OAuth2ResourceServerProperties;
+import org.ballcat.springsecurity.oauth2.server.resource.ResourceServerWebSecurityConfigurerAdapter;
+import org.ballcat.springsecurity.oauth2.server.resource.properties.OAuth2ResourceServerProperties;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.security.authentication.AuthenticationProvider;

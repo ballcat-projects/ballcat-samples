@@ -3,9 +3,9 @@ package com.your.packages.admin.captcha.tianai;
 import cloud.tianai.captcha.spring.application.ImageCaptchaApplication;
 import cloud.tianai.captcha.spring.plugins.secondary.SecondaryVerificationApplication;
 import cn.hutool.core.util.StrUtil;
-import com.hccake.ballcat.common.core.captcah.CaptchaResponse;
-import com.hccake.ballcat.common.core.captcah.CaptchaValidator;
 import lombok.RequiredArgsConstructor;
+import org.ballcat.security.captcha.CaptchaValidateResult;
+import org.ballcat.security.captcha.CaptchaValidator;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * tianai 验证码的校验器
+ *
  * @author whace
  */
 @Component
@@ -23,21 +24,18 @@ public class TianaiCaptchaValidator implements CaptchaValidator {
 	private final ImageCaptchaApplication sca;
 
 	@Override
-	public CaptchaResponse validate(HttpServletRequest request) {
+	public CaptchaValidateResult validate(HttpServletRequest request) {
 		String captchaId = request.getParameter("captchaId");
 		if (StrUtil.isBlank(captchaId)) {
-			CaptchaResponse captchaResponse = new CaptchaResponse();
-			captchaResponse.setSuccess(false);
-			captchaResponse.setErrMsg("captcha id can not be null");
-			return captchaResponse;
+			return CaptchaValidateResult.failure("captcha id can not be null");
 		}
-		boolean match = false;
-		if (sca instanceof SecondaryVerificationApplication) {
-			match = ((SecondaryVerificationApplication) sca).secondaryVerification(captchaId);
+
+		if (!(sca instanceof SecondaryVerificationApplication)) {
+			return CaptchaValidateResult.failure("captcha must enable secondary verification");
 		}
-		CaptchaResponse captchaResponse = new CaptchaResponse();
-		captchaResponse.setSuccess(match);
-		return captchaResponse;
+
+		boolean match = ((SecondaryVerificationApplication) sca).secondaryVerification(captchaId);
+		return match ? CaptchaValidateResult.success() : CaptchaValidateResult.failure("captcha validate failure");
 	}
 
 }

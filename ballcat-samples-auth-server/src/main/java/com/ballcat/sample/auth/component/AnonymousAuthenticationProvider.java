@@ -2,8 +2,8 @@ package com.ballcat.sample.auth.component;
 
 import cn.hutool.core.collection.CollectionUtil;
 import com.hccake.ballcat.common.core.util.WebUtils;
-import com.hccake.ballcat.common.security.properties.OAuth2ResourceServerProperties;
 import lombok.extern.slf4j.Slf4j;
+import org.ballcat.springsecurity.oauth2.server.resource.properties.OAuth2ResourceServerProperties;
 import org.springframework.http.server.PathContainer;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authentication.AuthenticationDetailsSource;
