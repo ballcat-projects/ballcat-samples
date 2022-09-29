@@ -17,4 +17,5 @@ public class MailNotifyConfig {
 	public MailNotifyPusher mailNotifyPusher(MailSender mailSender) {
 		return new MailNotifyPusher(mailSender);
 	}
+
 }
