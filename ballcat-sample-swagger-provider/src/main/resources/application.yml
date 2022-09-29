@@ -33,27 +33,6 @@ xxl:
       logretentiondays: 30 #日志保留天数
 
 ballcat:
-  security:
-    oauth2:
-      resourceserver:
-        shared-stored-token: false
-        opaque-token:
-          client-id: test
-          client-secret: test
-          introspection-uri: http://ballcat-admin:8080/oauth/check_token
-        ignore-urls:
-          ## 忽略鉴权的 url 列表
-          - /public/**
-          - /actuator/**
-          - /doc.html
-          - /v2/api-docs/**
-          - /v3/api-docs/**
-          - /swagger-resources/**
-          - /swagger-ui/**
-          - /swagger-ui.html
-          - /webjars/**
-          - /bycdao-ui/**
-          - /favicon.ico
   openapi:
     info:
       title: BallCat-api Docs
