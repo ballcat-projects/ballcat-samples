@@ -1,16 +1,14 @@
-package com.your.packages.admin.captcha;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.context.annotation.Primary;
-import org.springframework.stereotype.Component;
-
-import com.hccake.ballcat.auth.filter.captcha.CaptchaValidator;
-import com.hccake.ballcat.auth.filter.captcha.domain.CaptchaResponse;
+package com.your.packages.admin.captcha.tianai;
 
 import cloud.tianai.captcha.spring.application.ImageCaptchaApplication;
 import cloud.tianai.captcha.spring.plugins.secondary.SecondaryVerificationApplication;
+import com.hccake.ballcat.common.core.captcah.CaptchaResponse;
+import com.hccake.ballcat.common.core.captcah.CaptchaValidator;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Component;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Component
 @Primary

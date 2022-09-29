@@ -1,4 +1,4 @@
-package com.your.packages.admin.captcha;
+package com.your.packages.admin.captcha.anji;
 
 import com.anji.captcha.service.CaptchaCacheService;
 import org.springframework.beans.factory.annotation.Autowired;

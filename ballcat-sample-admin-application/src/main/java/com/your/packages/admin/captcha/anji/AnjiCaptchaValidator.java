@@ -1,10 +1,10 @@
-package com.your.packages.admin.captcha;
+package com.your.packages.admin.captcha.anji;
 
 import com.anji.captcha.model.common.ResponseModel;
 import com.anji.captcha.model.vo.CaptchaVO;
 import com.anji.captcha.service.CaptchaService;
-import com.hccake.ballcat.auth.filter.captcha.CaptchaValidator;
-import com.hccake.ballcat.auth.filter.captcha.domain.CaptchaResponse;
+import com.hccake.ballcat.common.core.captcah.CaptchaResponse;
+import com.hccake.ballcat.common.core.captcah.CaptchaValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

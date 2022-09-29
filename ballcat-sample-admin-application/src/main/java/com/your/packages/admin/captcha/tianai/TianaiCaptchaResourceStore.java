@@ -1,9 +1,4 @@
-package com.your.packages.admin.captcha;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import org.springframework.stereotype.Component;
+package com.your.packages.admin.captcha.tianai;
 
 import cloud.tianai.captcha.common.constant.CaptchaTypeConstant;
 import cloud.tianai.captcha.generator.common.constant.SliderCaptchaConstant;
@@ -11,13 +6,17 @@ import cloud.tianai.captcha.generator.impl.StandardSliderImageCaptchaGenerator;
 import cloud.tianai.captcha.resource.common.model.dto.Resource;
 import cloud.tianai.captcha.resource.impl.DefaultResourceStore;
 import cloud.tianai.captcha.resource.impl.provider.ClassPathResourceProvider;
+import org.springframework.stereotype.Component;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static cloud.tianai.captcha.generator.impl.StandardSliderImageCaptchaGenerator.DEFAULT_SLIDER_IMAGE_TEMPLATE_PATH;
 
 @Component
-public class MyResourceStore extends DefaultResourceStore {
+public class TianaiCaptchaResourceStore extends DefaultResourceStore {
 
-    public MyResourceStore() {
+    public TianaiCaptchaResourceStore() {
 
         // 滑块验证码 模板 (系统内置)
         Map<String, Resource> template1 = new HashMap<>(4);
