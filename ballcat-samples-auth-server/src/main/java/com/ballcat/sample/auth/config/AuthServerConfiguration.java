@@ -3,7 +3,7 @@ package com.ballcat.sample.auth.config;
 import com.ballcat.sample.auth.grant.CustomTokenGrantBuilder;
 import com.hccake.ballcat.auth.authentication.TokenGrantBuilder;
 import com.hccake.ballcat.auth.configurer.OAuth2ClientConfigurer;
-import org.ballcat.springsecurity.oauth2.server.resource.SharedStoredOpaqueTokenIntrospector;
+import org.ballcat.springsecurity.oauth2.server.resource.introspection.SpingOAuth2SharedStoredOpaqueTokenIntrospector;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -37,14 +37,12 @@ public class AuthServerConfiguration {
 	public OAuth2ClientConfigurer oAuth2ClientConfigurer(PasswordEncoder passwordEncoder) {
 		// 内存中注册两个客户端 ui 和 app
 		// @formatter:off
-		return (configurer) -> {
-			configurer.inMemory()
-					.withClient("admin").secret(passwordEncoder.encode("admin")).scopes("all")
-					.and()
-					.withClient("app").secret(passwordEncoder.encode("app")).scopes("all")
-					.and()
-					.withClient("test").secret(passwordEncoder.encode("test")).scopes("all");
-		};
+		return (configurer) -> configurer.inMemory()
+				.withClient("admin").secret(passwordEncoder.encode("admin")).scopes("all")
+				.and()
+				.withClient("app").secret(passwordEncoder.encode("app")).scopes("all")
+				.and()
+				.withClient("test").secret(passwordEncoder.encode("test")).scopes("all");
 		// @formatter:on
 	}
 
@@ -61,7 +59,7 @@ public class AuthServerConfiguration {
 	@Bean
 	@ConditionalOnMissingBean
 	public OpaqueTokenIntrospector sharedStoredOpaqueTokenIntrospector(TokenStore tokenStore) {
-		return new SharedStoredOpaqueTokenIntrospector(tokenStore);
+		return new SpingOAuth2SharedStoredOpaqueTokenIntrospector(tokenStore);
 	}
 
 }
