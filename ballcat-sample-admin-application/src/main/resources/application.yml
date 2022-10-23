@@ -54,17 +54,6 @@ mybatis-plus:
       logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
 
 
-# 定时任务相关配置
-xxl:
-  job:
-    admin:
-      addresses: http://ballcat-job:8888/xxl-job-admin # xxl-job-admin 接口地址
-    executor:
-      port: 8081 #通讯端口
-      appName: ballcat-admin-jobs
-      logretentiondays: 30 #日志保留天数
-
-
 # BallCat 相关配置
 ballcat:
   system:
@@ -101,6 +90,15 @@ ballcat:
     auth: true
     secret-id: 'ballcat-monitor'
     secret-key: '=BallCat-Monitor'
+  # 定时任务相关配置
+  xxl:
+    job:
+      admin:
+        addresses: http://ballcat-job:8888/xxl-job-admin # xxl-job-admin 接口地址
+      executor:
+        port: 8081 #通讯端口
+        appName: ballcat-admin-jobs
+        logretentiondays: 30 #日志保留天数
   openapi:
     info:
       title: BallCat-Admin Docs
