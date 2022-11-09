@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * Spring OAuth2 授权码模式需要登录后进行流程，处理登录错误，并重定向回登录页
+ *
  * @author hccake
  */
 @Component

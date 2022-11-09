@@ -32,3 +32,8 @@ logging:
 ballcat:
   openapi:
     enabled: false
+  oss:
+    endpoint: http://oss-cn-shanghai.aliyuncs.com
+    access-key: xxxxx
+    access-secret: xxxxx
+    bucket: xxxx

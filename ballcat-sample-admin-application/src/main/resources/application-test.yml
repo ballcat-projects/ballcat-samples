@@ -27,3 +27,10 @@ logging:
   file:
     path: logs/@artifactId@
     name: ${logging.file.path}/output.log
+
+ballcat:
+  oss:
+    endpoint: http://oss-cn-shanghai.aliyuncs.com
+    access-key: xxxxx
+    access-secret: xxxxx
+    bucket: xxxx

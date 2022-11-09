@@ -27,3 +27,12 @@ springdoc:
     urls:
       - { name: 'admin', url: '/v3/api-docs' }
       - { name: 'api', url: 'http://ballcat-api/v3/api-docs' }
+
+
+ballcat:
+  oss:
+    endpoint: http://oss-cn-shanghai.aliyuncs.com
+    access-key: xxxxx
+    access-secret: xxxxx
+    bucket: xxxx
+

@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
  *
  * @author hccake
  */
+// @Primary
 @Component
 @RequiredArgsConstructor
 public class AnjiCaptchaValidator implements CaptchaValidator {

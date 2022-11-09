@@ -16,8 +16,8 @@ import javax.servlet.http.HttpServletRequest;
  *
  * @author whace
  */
-@Component
 @Primary
+@Component
 @RequiredArgsConstructor
 public class TianaiCaptchaValidator implements CaptchaValidator {
 
