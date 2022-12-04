@@ -5,7 +5,7 @@
 	<parent>
 		<artifactId>ballcat</artifactId>
 		<groupId>com.hccake</groupId>
-		<version>1.0.1</version>
+		<version>1.0.3</version>
 		<relativePath/>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
@@ -18,15 +18,15 @@
 		<module>ballcat-sample-monitor</module>
 		<module>ballcat-sample-admin-application</module>
 		<module>ballcat-sample-swagger-provider</module>
-        <module>ballcat-sample-pay</module>
+		<module>ballcat-sample-pay</module>
 		<module>ballcat-samples-websocket</module>
 		<module>ballcat-sample-i18n</module>
-        <module>ballcat-samples-auth-server</module>
-    </modules>
+		<module>ballcat-samples-auth-server</module>
+	</modules>
 
 	<properties>
-		<revision>1.0.1</revision>
-		<spring-boot-admin.version>2.7.4</spring-boot-admin.version>
+		<revision>1.0.3</revision>
+		<spring-boot-admin.version>2.7.8</spring-boot-admin.version>
 	</properties>
 
 	<dependencies>
@@ -80,6 +80,25 @@
 
 
 	<build>
+		<!--重要 如果不设置resource 会导致application.yaml中的@@找不到pom文件中的配置-->
+		<resources>
+			<resource>
+				<filtering>true</filtering>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**/*.yml</include>
+					<include>**/*.yaml</include>
+				</includes>
+			</resource>
+			<resource>
+				<filtering>false</filtering>
+				<directory>src/main/resources</directory>
+				<excludes>
+					<exclude>**/*.yml</exclude>
+					<exclude>**/*.yaml</exclude>
+				</excludes>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
 				<groupId>io.spring.javaformat</groupId>
