@@ -22,6 +22,7 @@
 		<module>ballcat-samples-websocket</module>
 		<module>ballcat-sample-i18n</module>
 		<module>ballcat-samples-auth-server</module>
+		<module>ballcat-sample-oauth2</module>
 	</modules>
 
 	<properties>
