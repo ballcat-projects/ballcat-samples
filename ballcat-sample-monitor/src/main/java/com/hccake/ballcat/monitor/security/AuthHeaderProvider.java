@@ -41,8 +41,11 @@ public class AuthHeaderProvider implements HttpHeadersProvider {
 			// 客户端ID
 			headers.set(HeaderConstants.SECRET_ID, secretId);
 			// sign
-			String tempSign = new StringBuilder().append(reqTime).reverse().append(secretId).append(secretKey)
-					.toString();
+			String tempSign = new StringBuilder().append(reqTime)
+				.reverse()
+				.append(secretId)
+				.append(secretKey)
+				.toString();
 			String sign = SecureUtil.md5(tempSign);
 			headers.set(HeaderConstants.SIGN, sign);
 		}

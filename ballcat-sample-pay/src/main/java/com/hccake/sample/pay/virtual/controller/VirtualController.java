@@ -27,25 +27,32 @@ public class VirtualController {
 	@GetMapping("eth")
 	public Object eth() {
 		etherscanThread.put(new Order()
-				// infura 平台由于需要 project id, 可以自己填上自己的projectId 进行验证
-				.setHash("0x2ab87cc91f48fa940aab53e602a57786ad3d4a263875b6ffb779713bf5a60645")
-				.setCreateTime(LocalDateTime.now()).setContract(Contract.USDT));
+			// infura 平台由于需要 project id, 可以自己填上自己的projectId 进行验证
+			.setHash("0x2ab87cc91f48fa940aab53e602a57786ad3d4a263875b6ffb779713bf5a60645")
+			.setCreateTime(LocalDateTime.now())
+			.setContract(Contract.USDT));
 		return "";
 	}
 
 	@GetMapping("trc")
 	public Object trc() {
 		tronscanThread.put(new Order().setHash("b22dce34a2c60661989ee710cf71d80d3ff50c1613e7fde6f9e34146ef7bdd2e")
-				.setContract(Contract.USDT).setSn(2312314L).setCreateTime(LocalDateTime.now()).setStatus(Status.WAIT)
-				.setAddress("TFm55T9n2Qs3gfehoXt4YFBJzRJKrHWH3V"));
+			.setContract(Contract.USDT)
+			.setSn(2312314L)
+			.setCreateTime(LocalDateTime.now())
+			.setStatus(Status.WAIT)
+			.setAddress("TFm55T9n2Qs3gfehoXt4YFBJzRJKrHWH3V"));
 		return "";
 	}
 
 	@GetMapping("btc")
 	public Object btc() {
 		omniThread.put(new Order().setHash("f583049c257da84d17874aef32425c8d192c12f9718db152fc72370b9d6bd01f")
-				.setContract(Contract.USDT).setSn(2312314L).setCreateTime(LocalDateTime.now()).setStatus(Status.WAIT)
-				.setAddress("34Bs4AJigJUcbXXJk5kVznRNDiAGj57qCm"));
+			.setContract(Contract.USDT)
+			.setSn(2312314L)
+			.setCreateTime(LocalDateTime.now())
+			.setStatus(Status.WAIT)
+			.setAddress("34Bs4AJigJUcbXXJk5kVznRNDiAGj57qCm"));
 		return "";
 	}
 

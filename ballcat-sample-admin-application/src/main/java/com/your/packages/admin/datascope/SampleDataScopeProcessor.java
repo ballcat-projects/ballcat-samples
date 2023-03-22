@@ -97,17 +97,21 @@ public class SampleDataScopeProcessor implements DataScopeProcessor {
 		if (hasLevelChildLevel || hasSelfChildLevel) {
 			List<SysOrganization> childOrganizations = sysOrganizationService.listChildOrganization(organizationId);
 			if (CollectionUtil.isNotEmpty(childOrganizations)) {
-				List<Integer> organizationIds = childOrganizations.stream().map(SysOrganization::getId)
-						.collect(Collectors.toList());
+				List<Integer> organizationIds = childOrganizations.stream()
+					.map(SysOrganization::getId)
+					.collect(Collectors.toList());
 				scopeOrganizationId.addAll(organizationIds);
 			}
 		}
 		// 自定义部门
 		List<SysRole> sysRoles = map.get(DataScopeTypeEnum.CUSTOM.getType());
 		if (CollectionUtil.isNotEmpty(sysRoles)) {
-			Set<Integer> customDeptIds = sysRoles.stream().map(SysRole::getScopeResources).filter(Objects::nonNull)
-					.flatMap(x -> Arrays.stream(x.split(StrUtil.COMMA))).map(Integer::parseInt)
-					.collect(Collectors.toSet());
+			Set<Integer> customDeptIds = sysRoles.stream()
+				.map(SysRole::getScopeResources)
+				.filter(Objects::nonNull)
+				.flatMap(x -> Arrays.stream(x.split(StrUtil.COMMA)))
+				.map(Integer::parseInt)
+				.collect(Collectors.toSet());
 			scopeOrganizationId.addAll(customDeptIds);
 		}
 

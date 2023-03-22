@@ -19,10 +19,11 @@ public class OmniConfig {
 		Supplier<Boolean> unlock = () -> true;
 
 		return new live.lingting.virtual.currency.bitcoin.properties.BitcoinProperties()
-				// 比特节点
-				.setEndpoints(properties.getEndpoints())
-				// 请求锁
-				.setLock(lock).setUnlock(unlock);
+			// 比特节点
+			.setEndpoints(properties.getEndpoints())
+			// 请求锁
+			.setLock(lock)
+			.setUnlock(unlock);
 	}
 
 }

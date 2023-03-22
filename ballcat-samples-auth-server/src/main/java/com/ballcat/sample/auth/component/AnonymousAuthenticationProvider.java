@@ -38,8 +38,9 @@ public class AnonymousAuthenticationProvider implements AuthenticationProvider {
 	public AnonymousAuthenticationProvider(OAuth2ResourceServerProperties resourceServerProperties) {
 		List<String> ignoreUrls = resourceServerProperties.getIgnoreUrls();
 		if (CollectionUtil.isNotEmpty(ignoreUrls)) {
-			ignorePathPatterns = ignoreUrls.stream().map(PathPatternParser.defaultInstance::parse)
-					.collect(Collectors.toList());
+			ignorePathPatterns = ignoreUrls.stream()
+				.map(PathPatternParser.defaultInstance::parse)
+				.collect(Collectors.toList());
 		}
 		else {
 			ignorePathPatterns = new ArrayList<>();

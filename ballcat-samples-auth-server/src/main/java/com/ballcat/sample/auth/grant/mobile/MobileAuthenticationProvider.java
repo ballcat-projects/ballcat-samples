@@ -40,13 +40,18 @@ public class MobileAuthenticationProvider implements AuthenticationProvider {
 			log.debug("Authentication failed: no credentials provided");
 
 			throw new BadCredentialsException(messages
-					.getMessage("AbstractUserDetailsAuthenticationProvider.noopBindAccount", "Noop Bind Account"));
+				.getMessage("AbstractUserDetailsAuthenticationProvider.noopBindAccount", "Noop Bind Account"));
 		}
 
 		// 转换成 UserDetails
-		UserDetails userDetails = User.builder().userId(appUser.getUserId()).username(appUser.getUsername())
-				.password(appUser.getPassword()).nickname(appUser.getNickname()).status(1).attributes(new HashMap<>())
-				.build();
+		UserDetails userDetails = User.builder()
+			.userId(appUser.getUserId())
+			.username(appUser.getUsername())
+			.password(appUser.getPassword())
+			.nickname(appUser.getNickname())
+			.status(1)
+			.attributes(new HashMap<>())
+			.build();
 
 		// 检查账号状态
 		// detailsChecker.check(userDetails);

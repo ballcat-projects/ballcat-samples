@@ -53,8 +53,9 @@ public interface DocumentMapper extends ExtendMapper<Document> {
 	 */
 	default void updateUserOrganizationId(Integer userId, Integer originOrganizationId, Integer currentOrganizationId) {
 		LambdaUpdateWrapper<Document> wrapper = Wrappers.lambdaUpdate(Document.class)
-				.set(Document::getOrganizationId, currentOrganizationId).eq(Document::getUserId, userId)
-				.eq(Document::getOrganizationId, originOrganizationId);
+			.set(Document::getOrganizationId, currentOrganizationId)
+			.eq(Document::getUserId, userId)
+			.eq(Document::getOrganizationId, originOrganizationId);
 		this.update(null, wrapper);
 	}
 

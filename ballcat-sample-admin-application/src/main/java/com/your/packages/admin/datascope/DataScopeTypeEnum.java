@@ -5,6 +5,7 @@ import lombok.Getter;
 
 /**
  * 数据权限范围类型
+ *
  * @author hccake
  */
 @Getter

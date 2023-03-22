@@ -40,9 +40,14 @@ public class SysUserDetailsService implements UserDetailsService {
 				throw new UsernameNotFoundException("username error!");
 			}
 			// 转换成 UserDetails, 这里可以返回不同的 UserDetails 实现
-			return User.builder().userId(appUser.getUserId()).username(appUser.getUsername())
-					.password(appUser.getPassword()).nickname(appUser.getNickname()).status(1)
-					.attributes(new HashMap<>()).build();
+			return User.builder()
+				.userId(appUser.getUserId())
+				.username(appUser.getUsername())
+				.password(appUser.getPassword())
+				.nickname(appUser.getNickname())
+				.status(1)
+				.attributes(new HashMap<>())
+				.build();
 		}
 
 		SysUser sysUser = sysUserService.getByUsername(username);
@@ -50,9 +55,14 @@ public class SysUserDetailsService implements UserDetailsService {
 			throw new UsernameNotFoundException("username error!");
 		}
 		// 转换成 UserDetails, 这里可以返回不同的 UserDetails 实现
-		return User.builder().userId(sysUser.getUserId()).username(sysUser.getUsername())
-				.password(sysUser.getPassword()).nickname(sysUser.getNickname()).status(1).attributes(new HashMap<>())
-				.build();
+		return User.builder()
+			.userId(sysUser.getUserId())
+			.username(sysUser.getUsername())
+			.password(sysUser.getPassword())
+			.nickname(sysUser.getNickname())
+			.status(1)
+			.attributes(new HashMap<>())
+			.build();
 	}
 
 }
