@@ -17,12 +17,7 @@ import net.sf.jsqlparser.expression.operators.relational.InExpression;
 import net.sf.jsqlparser.schema.Column;
 import org.springframework.stereotype.Component;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -40,16 +35,21 @@ public class CustomDataScope implements DataScope {
 	 */
 	private static final Set<String> ORGANIZATION_ID_TABLE_NAMES = CollectionUtil.newHashSet("sample_document");
 
+	private final Set<String> tableNames;
+
+	public CustomDataScope() {
+		this.tableNames = new TreeSet<>(String.CASE_INSENSITIVE_ORDER);
+		this.tableNames.add("sample_document");
+	}
+
 	@Override
 	public String getResource() {
 		return "userData";
 	}
 
 	@Override
-	public Collection<String> getTableNames() {
-		Set<String> tableNames = new TreeSet<>(String.CASE_INSENSITIVE_ORDER);
-		tableNames.addAll(Collections.singletonList("sample_document"));
-		return tableNames;
+	public boolean includes(String tableName) {
+		return tableNames.contains(tableName);
 	}
 
 	@Override

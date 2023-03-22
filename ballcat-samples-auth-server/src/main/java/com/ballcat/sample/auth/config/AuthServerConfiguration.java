@@ -3,7 +3,7 @@ package com.ballcat.sample.auth.config;
 import com.ballcat.sample.auth.grant.CustomTokenGrantBuilder;
 import com.hccake.ballcat.auth.authentication.TokenGrantBuilder;
 import com.hccake.ballcat.auth.configurer.OAuth2ClientConfigurer;
-import org.ballcat.springsecurity.oauth2.server.resource.introspection.SpingOAuth2SharedStoredOpaqueTokenIntrospector;
+import org.ballcat.springsecurity.oauth2.server.resource.introspection.SpringOAuth2SharedStoredOpaqueTokenIntrospector;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -59,7 +59,7 @@ public class AuthServerConfiguration {
 	@Bean
 	@ConditionalOnMissingBean
 	public OpaqueTokenIntrospector sharedStoredOpaqueTokenIntrospector(TokenStore tokenStore) {
-		return new SpingOAuth2SharedStoredOpaqueTokenIntrospector(tokenStore);
+		return new SpringOAuth2SharedStoredOpaqueTokenIntrospector(tokenStore);
 	}
 
 }
