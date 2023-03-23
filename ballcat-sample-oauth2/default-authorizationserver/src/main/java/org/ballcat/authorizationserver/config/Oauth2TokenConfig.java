@@ -1,4 +1,4 @@
-package org.ballcat.authorizationserver;
+package org.ballcat.authorizationserver.config;
 
 import com.hccake.ballcat.common.security.constant.TokenAttributeNameConstants;
 import com.hccake.ballcat.common.security.constant.UserInfoFiledNameConstants;
@@ -17,7 +17,7 @@ import java.util.Map;
  * @author hccake
  */
 @Configuration(proxyBeanMethods = false)
-public class Oauth2TokenConfiguration {
+public class Oauth2TokenConfig {
 
 	@Bean
 	public OAuth2TokenCustomizer<OAuth2TokenClaimsContext> oAuth2TokenCustomizer() {

@@ -1,0 +1,16 @@
+server:
+  port: 8112
+
+# BallCat 相关配置
+ballcat:
+  security:
+    oauth2:
+      resourceserver:
+        shared-stored-token: true
+
+# 测试共享 token 的时候需要和 authorization server 使用相同的数据库
+spring:
+  datasource:
+    url: jdbc:h2:tcp://localhost:9090/mem:oauth2db
+    username: sa
+    password:

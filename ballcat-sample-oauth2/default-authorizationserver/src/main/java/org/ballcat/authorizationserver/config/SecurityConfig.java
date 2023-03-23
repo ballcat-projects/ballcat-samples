@@ -1,7 +1,8 @@
-package org.ballcat.authorizationserver;
+package org.ballcat.authorizationserver.config;
 
 import com.hccake.ballcat.common.security.constant.UserAttributeNameConstants;
 import com.hccake.ballcat.common.security.userdetails.User;
+import org.ballcat.authorizationserver.userdetails.InMemoryUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

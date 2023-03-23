@@ -14,6 +14,7 @@
 	<modules>
 		<module>remote-introspect-resourceserver</module>
 		<module>default-authorizationserver</module>
+		<module>shared-introspect-resourceserver</module>
 	</modules>
 
 
