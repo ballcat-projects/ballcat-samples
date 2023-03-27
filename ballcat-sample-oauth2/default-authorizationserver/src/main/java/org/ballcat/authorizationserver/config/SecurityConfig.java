@@ -36,6 +36,7 @@ public class SecurityConfig {
 
 		User user = User.builder()
 			.userId(1)
+			.type(1)
 			.username("user1")
 			.password(passwordEncoder.encode("password"))
 			.nickname("测试用户1")
