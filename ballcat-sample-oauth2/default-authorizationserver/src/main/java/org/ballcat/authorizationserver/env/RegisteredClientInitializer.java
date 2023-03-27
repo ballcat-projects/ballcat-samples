@@ -12,6 +12,7 @@ import org.springframework.security.oauth2.server.authorization.settings.OAuth2T
 import org.springframework.security.oauth2.server.authorization.settings.TokenSettings;
 import org.springframework.stereotype.Component;
 
+import java.time.Duration;
 import java.util.UUID;
 
 /**
@@ -25,7 +26,7 @@ public class RegisteredClientInitializer implements ApplicationRunner {
 
 	@Override
 	public void run(ApplicationArguments args) {
-		RegisteredClient registeredClient = RegisteredClient.withId(UUID.randomUUID().toString())
+		RegisteredClient testClient = RegisteredClient.withId(UUID.randomUUID().toString())
 			.clientId("test")
 			.clientSecret("{noop}test")
 			.clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
@@ -36,11 +37,15 @@ public class RegisteredClientInitializer implements ApplicationRunner {
 			.redirectUri("http://127.0.0.1:8111/authorized")
 			.scope("skip_captcha") // 跳过验证码
 			.scope("skip_password_decode") // 跳过 AES 密码解密
-			// 使用不透明令牌
-			.tokenSettings(TokenSettings.builder().accessTokenFormat(OAuth2TokenFormat.REFERENCE).build())
+			.tokenSettings(TokenSettings.builder()
+				// 使用不透明令牌
+				.accessTokenFormat(OAuth2TokenFormat.REFERENCE)
+				.accessTokenTimeToLive(Duration.ofDays(1))
+				.refreshTokenTimeToLive(Duration.ofDays(3))
+				.build())
 			.clientSettings(ClientSettings.builder().requireAuthorizationConsent(true).build())
 			.build();
-		registeredClientRepository.save(registeredClient);
+		registeredClientRepository.save(testClient);
 	}
 
 }
