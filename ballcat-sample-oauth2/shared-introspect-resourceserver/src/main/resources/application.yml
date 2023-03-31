@@ -6,7 +6,11 @@ ballcat:
   security:
     oauth2:
       resourceserver:
+        # 共享 token 存储
         shared-stored-token: true
+        # 支持匿名登陆的 url 列表
+        ignore-urls:
+          - /public/**
 
 # 测试共享 token 的时候需要和 authorization server 使用相同的数据库
 spring:

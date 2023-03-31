@@ -13,3 +13,11 @@ ballcat:
           client-id: test
           client-secret: test
           introspection-uri: http://127.0.0.1:8110/oauth2/introspect
+        # 支持匿名登陆的 url 列表
+        ignore-urls:
+          /public/**
+
+
+logging:
+  level:
+    root: debug
