@@ -1,5 +1,5 @@
 
-package org.ballcat.authorizationserver.userdetails;
+package org.ballcat.sample.authorizationserver.userdetails;
 
 import com.hccake.ballcat.common.security.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;

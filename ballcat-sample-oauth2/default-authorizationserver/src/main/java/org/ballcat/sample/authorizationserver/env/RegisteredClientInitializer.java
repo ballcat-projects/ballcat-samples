@@ -1,4 +1,4 @@
-package org.ballcat.authorizationserver.env;
+package org.ballcat.sample.authorizationserver.env;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.ApplicationArguments;

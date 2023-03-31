@@ -1,8 +1,8 @@
-package org.ballcat.authorizationserver.config;
+package org.ballcat.sample.authorizationserver.configuration;
 
 import com.hccake.ballcat.common.security.constant.UserAttributeNameConstants;
 import com.hccake.ballcat.common.security.userdetails.User;
-import org.ballcat.authorizationserver.userdetails.InMemoryUserDetailsService;
+import org.ballcat.sample.authorizationserver.userdetails.InMemoryUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -37,9 +37,9 @@ public class SecurityConfig {
 		User user = User.builder()
 			.userId(1)
 			.type(1)
-			.username("user1")
-			.password(passwordEncoder.encode("password"))
-			.nickname("测试用户1")
+			.username("admin")
+			.password(passwordEncoder.encode("a123456"))
+			.nickname("超级管理员")
 			.status(1)
 			.avatar("http://s.com")
 			.organizationId(1)

@@ -1,4 +1,4 @@
-package org.ballcat.authorizationserver.config;
+package org.ballcat.sample.authorizationserver.configuration;
 
 import org.h2.tools.Server;
 import org.springframework.context.annotation.Bean;

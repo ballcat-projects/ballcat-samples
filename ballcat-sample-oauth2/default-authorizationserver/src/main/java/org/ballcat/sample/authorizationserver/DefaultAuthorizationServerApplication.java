@@ -1,4 +1,4 @@
-package org.ballcat.authorizationserver;
+package org.ballcat.sample.authorizationserver;
 
 import org.ballcat.springsecurity.oauth2.server.authorization.annotation.EnableOauth2AuthorizationServer;
 import org.springframework.boot.SpringApplication;

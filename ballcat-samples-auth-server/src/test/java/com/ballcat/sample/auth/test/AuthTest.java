@@ -83,8 +83,7 @@ public class AuthTest {
 			.getResponse()
 			.getContentAsString();
 
-		HashMap map = JsonUtils.toObj(loginResult, HashMap.class);
-		String accessToken = (String) map.get("access_token");
+		String accessToken = JsonPath.read(loginResult, "$.access_token");
 
 		// 登录后再查询,可以获取到信息
 		mockMvc
