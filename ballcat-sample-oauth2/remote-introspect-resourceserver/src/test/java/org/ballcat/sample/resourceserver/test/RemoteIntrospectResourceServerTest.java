@@ -74,7 +74,6 @@ class RemoteIntrospectResourceServerTest {
 		return JsonPath.read(responseBody, "$.access_token");
 	}
 
-
 	@Test
 	void anonymousTest() throws Exception {
 
