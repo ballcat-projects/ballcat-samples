@@ -22,7 +22,8 @@
 		<module>ballcat-samples-websocket</module>
 		<module>ballcat-sample-i18n</module>
 		<module>ballcat-sample-oauth2</module>
-	</modules>
+        <module>ballcat-sample-excel</module>
+    </modules>
 
 	<properties>
 		<revision>1.2.0</revision>
