@@ -1,32 +1,23 @@
 
 package org.ballcat.sample.authorizationserver.userdetails;
 
-import com.hccake.ballcat.common.security.userdetails.User;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import java.util.HashMap;
-import java.util.Map;
-
+@RequiredArgsConstructor
 public class InMemoryUserDetailsService implements UserDetailsService {
 
-	private final Map<String, User> users;
-
-	public InMemoryUserDetailsService(User... userList) {
-		this.users = new HashMap<>();
-		for (User user : userList) {
-			this.users.put(user.getUsername(), user);
-		}
-	}
+	private final SystemUserService systemUserService;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		User user = this.users.get(username.toLowerCase());
-		if (user == null) {
-			throw new UsernameNotFoundException(username);
+		SystemUser systemUser = systemUserService.loadUserByUsername(username);
+		if (systemUser == null) {
+			throw new UsernameNotFoundException("用户" + username + "不存在");
 		}
-		return user;
+		return UserDetailsConverter.convert(systemUser);
 	}
 
 }

@@ -1,6 +1,7 @@
 package org.ballcat.sample.authorizationserver.env;
 
 import lombok.RequiredArgsConstructor;
+import org.ballcat.sample.authorizationserver.grant.CustomAuthorizationGrantType;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.security.oauth2.core.AuthorizationGrantType;
@@ -34,6 +35,7 @@ public class RegisteredClientInitializer implements ApplicationRunner {
 			.authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
 			.authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
 			.authorizationGrantType(AuthorizationGrantType.PASSWORD)
+			.authorizationGrantType(CustomAuthorizationGrantType.MOBILE)
 			.redirectUri("http://127.0.0.1:8111/authorized")
 			.scope("skip_captcha") // 跳过验证码
 			.scope("skip_password_decode") // 跳过 AES 密码解密
