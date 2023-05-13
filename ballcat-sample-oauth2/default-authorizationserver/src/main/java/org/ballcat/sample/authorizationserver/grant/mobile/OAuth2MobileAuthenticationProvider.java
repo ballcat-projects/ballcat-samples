@@ -8,9 +8,11 @@ import org.ballcat.sample.authorizationserver.userdetails.SystemUser;
 import org.ballcat.sample.authorizationserver.userdetails.SystemUserService;
 import org.ballcat.sample.authorizationserver.userdetails.UserDetailsConverter;
 import org.ballcat.springsecurity.oauth2.server.authorization.authentication.AbstractOAuth2ResourceOwnerAuthenticationProvider;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
+import org.springframework.security.oauth2.core.OAuth2Error;
+import org.springframework.security.oauth2.core.OAuth2ErrorCodes;
 import org.springframework.security.oauth2.core.OAuth2Token;
 import org.springframework.security.oauth2.server.authorization.OAuth2AuthorizationService;
 import org.springframework.security.oauth2.server.authorization.token.OAuth2TokenGenerator;
@@ -25,6 +27,8 @@ import java.util.Map;
 @Slf4j
 public class OAuth2MobileAuthenticationProvider
 		extends AbstractOAuth2ResourceOwnerAuthenticationProvider<OAuth2MobileAuthenticationToken> {
+
+	private static final String ERROR_URI = "https://datatracker.ietf.org/doc/html/rfc6749#section-5.2";
 
 	private final SystemUserService systemUserService;
 
@@ -64,12 +68,14 @@ public class OAuth2MobileAuthenticationProvider
 		String verificationCode = (String) additionalParameters.get(CustomOAuth2ParameterNames.VERIFICATION_CODE);
 
 		if (!mobileVerificationCodeService.checkVerificationCode(phoneNumber, verificationCode)) {
-			throw new BadCredentialsException("手机验证码错误");
+			OAuth2Error error = new OAuth2Error(OAuth2ErrorCodes.SERVER_ERROR, "手机验证码错误.", ERROR_URI);
+			throw new OAuth2AuthenticationException(error);
 		}
 
 		SystemUser systemUser = systemUserService.loadUserByPhoneNumber(phoneNumber);
 		if (systemUser == null) {
-			throw new BadCredentialsException("用户不存在");
+			OAuth2Error error = new OAuth2Error(OAuth2ErrorCodes.SERVER_ERROR, "用户不存在.", ERROR_URI);
+			throw new OAuth2AuthenticationException(error);
 		}
 
 		User user = UserDetailsConverter.convert(systemUser);
