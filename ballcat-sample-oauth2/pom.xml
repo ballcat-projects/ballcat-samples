@@ -12,10 +12,10 @@
 	<artifactId>ballcat-sample-oauth2</artifactId>
 	<packaging>pom</packaging>
 	<modules>
+		<module>custom-user-authorization</module>
 		<module>remote-introspect-resourceserver</module>
 		<module>default-authorizationserver</module>
 		<module>shared-introspect-resourceserver</module>
 	</modules>
-
 
 </project>
