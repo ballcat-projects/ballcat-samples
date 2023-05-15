@@ -48,6 +48,28 @@ public class RegisteredClientInitializer implements ApplicationRunner {
 			.clientSettings(ClientSettings.builder().requireAuthorizationConsent(true).build())
 			.build();
 		registeredClientRepository.save(testClient);
+
+		RegisteredClient appClient = RegisteredClient.withId(UUID.randomUUID().toString())
+				.clientId("app")
+				.clientSecret("{noop}app")
+				.clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
+				.authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
+				.authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
+				.authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
+				.authorizationGrantType(AuthorizationGrantType.PASSWORD)
+				.authorizationGrantType(CustomAuthorizationGrantType.MOBILE)
+				.redirectUri("http://127.0.0.1:8111/authorized")
+				.scope("skip_captcha") // 跳过验证码
+				.scope("skip_password_decode") // 跳过 AES 密码解密
+				.tokenSettings(TokenSettings.builder()
+						// 使用不透明令牌
+						.accessTokenFormat(OAuth2TokenFormat.REFERENCE)
+						.accessTokenTimeToLive(Duration.ofDays(1))
+						.refreshTokenTimeToLive(Duration.ofDays(3))
+						.build())
+				.clientSettings(ClientSettings.builder().requireAuthorizationConsent(true).build())
+				.build();
+		registeredClientRepository.save(appClient);
 	}
 
 }

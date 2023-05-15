@@ -2,6 +2,9 @@ package org.ballcat.sample.resourceserver.configuration;
 
 import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hccake.ballcat.common.security.authentication.OAuth2UserAuthenticationToken;
+import com.hccake.ballcat.common.security.jackson2.LongMixin;
+import com.hccake.ballcat.common.security.jackson2.OAuth2UserAuthenticationTokenMixin;
 import com.hccake.ballcat.common.security.jackson2.UserMixin;
 import com.hccake.ballcat.common.security.userdetails.User;
 import org.ballcat.springsecurity.oauth2.server.resource.introspection.SpringAuthorizationServerSharedStoredOpaqueTokenIntrospector;
@@ -54,7 +57,9 @@ public class OpaqueTokenIntrospectorConfig {
 		objectMapper.registerModule(new OAuth2AuthorizationServerJackson2Module());
 
 		// You will need to write the Mixin for your class so Jackson can marshall it.
+		objectMapper.addMixIn(Long.class, LongMixin.class);
 		objectMapper.addMixIn(User.class, UserMixin.class);
+		objectMapper.addMixIn(OAuth2UserAuthenticationToken.class, OAuth2UserAuthenticationTokenMixin.class);
 		rowMapper.setObjectMapper(objectMapper);
 
 		oAuth2AuthorizationService.setAuthorizationRowMapper(rowMapper);

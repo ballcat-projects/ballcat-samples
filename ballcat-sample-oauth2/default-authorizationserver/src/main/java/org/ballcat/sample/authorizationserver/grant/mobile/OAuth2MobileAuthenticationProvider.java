@@ -1,15 +1,14 @@
 package org.ballcat.sample.authorizationserver.grant.mobile;
 
 import com.hccake.ballcat.common.security.authentication.OAuth2UserAuthenticationToken;
-import com.hccake.ballcat.common.security.userdetails.User;
 import lombok.extern.slf4j.Slf4j;
 import org.ballcat.sample.authorizationserver.grant.CustomOAuth2ParameterNames;
-import org.ballcat.sample.authorizationserver.userdetails.SystemUser;
-import org.ballcat.sample.authorizationserver.userdetails.SystemUserService;
-import org.ballcat.sample.authorizationserver.userdetails.UserDetailsConverter;
+import org.ballcat.sample.authorizationserver.userdetails.DemoUserDetailsService;
 import org.ballcat.springsecurity.oauth2.server.authorization.authentication.AbstractOAuth2ResourceOwnerAuthenticationProvider;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.OAuth2Error;
 import org.springframework.security.oauth2.core.OAuth2ErrorCodes;
@@ -30,24 +29,24 @@ public class OAuth2MobileAuthenticationProvider
 
 	private static final String ERROR_URI = "https://datatracker.ietf.org/doc/html/rfc6749#section-5.2";
 
-	private final SystemUserService systemUserService;
+	private final DemoUserDetailsService userDetailsService;
 
 	private final MobileVerificationCodeService mobileVerificationCodeService;
 
 	/**
 	 * Constructs an {@code OAuth2MobileAuthenticationProvider} using the provided
 	 * parameters.
-	 * @param systemUserService the systemUser service
+	 * @param userDetailsService the user details service
 	 * @param authorizationService the authorization service
 	 * @param tokenGenerator the token generator
 	 * @since 1.0.0
 	 */
 	public OAuth2MobileAuthenticationProvider(OAuth2AuthorizationService authorizationService,
-			OAuth2TokenGenerator<? extends OAuth2Token> tokenGenerator, SystemUserService systemUserService,
+			OAuth2TokenGenerator<? extends OAuth2Token> tokenGenerator, DemoUserDetailsService userDetailsService,
 			MobileVerificationCodeService mobileVerificationCodeService) {
 		super(authorizationService, tokenGenerator);
-		Assert.notNull(systemUserService, "systemUserService cannot be null");
-		this.systemUserService = systemUserService;
+		Assert.notNull(userDetailsService, "userDetailsService cannot be null");
+		this.userDetailsService = userDetailsService;
 		this.mobileVerificationCodeService = mobileVerificationCodeService;
 	}
 
@@ -72,14 +71,16 @@ public class OAuth2MobileAuthenticationProvider
 			throw new OAuth2AuthenticationException(error);
 		}
 
-		SystemUser systemUser = systemUserService.loadUserByPhoneNumber(phoneNumber);
-		if (systemUser == null) {
+		UserDetails userDetails;
+		try {
+			userDetails = userDetailsService.loadUserByPhoneNumber(phoneNumber);
+		}
+		catch (UsernameNotFoundException ex) {
 			OAuth2Error error = new OAuth2Error(OAuth2ErrorCodes.SERVER_ERROR, "用户不存在.", ERROR_URI);
 			throw new OAuth2AuthenticationException(error);
 		}
 
-		User user = UserDetailsConverter.convert(systemUser);
-		OAuth2UserAuthenticationToken oAuth2UserAuthenticationToken = new OAuth2UserAuthenticationToken(user,
+		OAuth2UserAuthenticationToken oAuth2UserAuthenticationToken = new OAuth2UserAuthenticationToken(userDetails,
 				Collections.emptyList());
 		log.debug("got oAuth2UserInfoAuthenticationToken={}", oAuth2UserAuthenticationToken);
 

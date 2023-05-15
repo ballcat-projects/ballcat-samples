@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.ballcat.sample.authorizationserver.grant.mobile.MobileVerificationCodeService;
 import org.ballcat.sample.authorizationserver.grant.mobile.OAuth2MobileAuthenticationConverter;
 import org.ballcat.sample.authorizationserver.grant.mobile.OAuth2MobileAuthenticationProvider;
+import org.ballcat.sample.authorizationserver.userdetails.DemoUserDetailsService;
 import org.ballcat.sample.authorizationserver.userdetails.SystemUserService;
 import org.ballcat.springsecurity.oauth2.server.authorization.config.configurer.OAuth2ConfigurerUtils;
 import org.ballcat.springsecurity.oauth2.server.authorization.config.customizer.OAuth2AuthorizationServerConfigurerCustomizer;
@@ -32,7 +33,7 @@ public class OAuth2CustomGrantConfigurerCustomizer implements OAuth2Authorizatio
 		// 添加 手机号登陆 模式支持
 		oAuth2AuthorizationServerConfigurer.tokenEndpoint(tokenEndpoint -> {
 
-			SystemUserService userDetailsService = getBeanOrNull(SystemUserService.class);
+			DemoUserDetailsService userDetailsService = getBeanOrNull(DemoUserDetailsService.class);
 			OAuth2AuthorizationService authorizationService = getBeanOrNull(OAuth2AuthorizationService.class);
 			OAuth2TokenGenerator<? extends OAuth2Token> tokenGenerator = OAuth2ConfigurerUtils
 				.getTokenGenerator(httpSecurity);

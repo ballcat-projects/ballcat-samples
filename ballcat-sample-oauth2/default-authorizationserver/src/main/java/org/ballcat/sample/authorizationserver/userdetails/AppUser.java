@@ -9,7 +9,7 @@ import lombok.experimental.Accessors;
  */
 @Data
 @Accessors(chain = true)
-public class SystemUser {
+public class AppUser {
 
 	/**
 	 * 用户ID

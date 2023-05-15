@@ -1,7 +1,8 @@
 package org.ballcat.sample.authorizationserver.userdetails;
 
-import cn.hutool.core.map.MapUtil;
 import com.hccake.ballcat.common.security.userdetails.User;
+
+import java.util.HashMap;
 
 /**
  * @author hccake
@@ -17,8 +18,23 @@ public final class UserDetailsConverter {
 			.username(systemUser.getUsername())
 			.nickname(systemUser.getNickname())
 			.password(systemUser.getPassword())
+			.phoneNumber(systemUser.getPhoneNumber())
+			.type(systemUser.getType())
+			.attributes(new HashMap<>())
 			.status(1)
-			.attributes(MapUtil.of("phoneNumber", systemUser.getPhoneNumber()))
+			.build();
+	}
+
+	public static User convert(AppUser appUser) {
+		return User.builder()
+			.userId(appUser.getUserId())
+			.username(appUser.getUsername())
+			.nickname(appUser.getNickname())
+			.password(appUser.getPassword())
+			.phoneNumber(appUser.getPhoneNumber())
+			.type(appUser.getType())
+			.attributes(new HashMap<>())
+			.status(1)
 			.build();
 	}
 
