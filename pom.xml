@@ -26,7 +26,7 @@
     </modules>
 
 	<properties>
-		<revision>1.3.0-SNAPSHOT</revision>
+		<revision>1.3.0</revision>
 		<spring-boot-admin.version>2.7.8</spring-boot-admin.version>
 	</properties>
 
@@ -89,6 +89,7 @@
 				<includes>
 					<include>**/*.yml</include>
 					<include>**/*.yaml</include>
+					<include>logback-spring.xml</include>
 				</includes>
 			</resource>
 			<resource>
@@ -97,6 +98,7 @@
 				<excludes>
 					<exclude>**/*.yml</exclude>
 					<exclude>**/*.yaml</exclude>
+					<exclude>logback-spring.xml</exclude>
 				</excludes>
 			</resource>
 		</resources>
