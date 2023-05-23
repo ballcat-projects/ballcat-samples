@@ -3,6 +3,7 @@ package org.ballcat.sample.resourceserver.test;
 import com.jayway.jsonpath.JsonPath;
 import lombok.extern.slf4j.Slf4j;
 import org.ballcat.sample.resourceserver.SharedIntrospectResourceServerApplication;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -20,8 +21,11 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 /**
+ * 默认打包的时候不执行，测试前必须需要启动 default-authorization-server 授权服务器
+ *
  * @author hccake
  */
+@Disabled
 @Slf4j
 @AutoConfigureMockMvc
 @SpringBootTest(classes = SharedIntrospectResourceServerApplication.class)
