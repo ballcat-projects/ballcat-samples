@@ -41,7 +41,6 @@ public class DemoUserDetailsService implements UserDetailsService {
 		return UserDetailsConverter.convert(systemUser);
 	}
 
-
 	public UserDetails loadUserByPhoneNumber(String phoneNumber) throws UsernameNotFoundException {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 

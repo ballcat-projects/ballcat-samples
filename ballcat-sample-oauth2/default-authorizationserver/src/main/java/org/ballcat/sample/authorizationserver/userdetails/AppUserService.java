@@ -18,10 +18,7 @@ public class AppUserService {
 	}
 
 	public AppUser loadUserByUsername(String username) {
-		return appUsers.stream()
-			.filter(appUser -> appUser.getUsername().equals(username))
-			.findFirst()
-			.orElse(null);
+		return appUsers.stream().filter(appUser -> appUser.getUsername().equals(username)).findFirst().orElse(null);
 	}
 
 	public AppUser loadUserByPhoneNumber(String phoneNumber) {
