@@ -28,7 +28,7 @@ public class Document {
 	 */
 	@TableId
 	@Schema(title = "ID")
-	private Integer id;
+	private Long id;
 
 	/**
 	 * 文档名称
@@ -40,13 +40,13 @@ public class Document {
 	 * 所属用户ID
 	 */
 	@Schema(title = "所属用户ID")
-	private Integer userId;
+	private Long userId;
 
 	/**
 	 * 所属组织ID
 	 */
 	@Schema(title = "所属组织ID")
-	private Integer organizationId;
+	private Long organizationId;
 
 	/**
 	 * 创建时间

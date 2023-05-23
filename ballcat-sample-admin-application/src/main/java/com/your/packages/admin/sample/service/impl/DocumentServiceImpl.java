@@ -37,7 +37,7 @@ public class DocumentServiceImpl extends ExtendServiceImpl<DocumentMapper, Docum
 	}
 
 	@Override
-	public void updateUserOrganizationId(Integer userId, Integer originOrganizationId, Integer currentOrganizationId) {
+	public void updateUserOrganizationId(Long userId, Long originOrganizationId, Long currentOrganizationId) {
 		baseMapper.updateUserOrganizationId(userId, originOrganizationId, currentOrganizationId);
 	}
 

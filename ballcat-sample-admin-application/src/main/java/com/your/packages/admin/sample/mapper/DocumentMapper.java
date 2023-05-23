@@ -43,7 +43,7 @@ public interface DocumentMapper extends ExtendMapper<Document> {
 	 * @param wrapper 条件构造器
 	 * @return List<DocumentPageVO>
 	 */
-	List<DocumentPageVO> selectPageVO(IPage<Document> page, @Param(Constants.WRAPPER) Wrapper wrapper);
+	List<DocumentPageVO> selectPageVO(IPage<Document> page, @Param(Constants.WRAPPER) Wrapper<Document> wrapper);
 
 	/**
 	 * 更新用户的组织id
@@ -51,7 +51,7 @@ public interface DocumentMapper extends ExtendMapper<Document> {
 	 * @param originOrganizationId 原组织id
 	 * @param currentOrganizationId 现组织id
 	 */
-	default void updateUserOrganizationId(Integer userId, Integer originOrganizationId, Integer currentOrganizationId) {
+	default void updateUserOrganizationId(Long userId, Long originOrganizationId, Long currentOrganizationId) {
 		LambdaUpdateWrapper<Document> wrapper = Wrappers.lambdaUpdate(Document.class)
 			.set(Document::getOrganizationId, currentOrganizationId)
 			.eq(Document::getUserId, userId)

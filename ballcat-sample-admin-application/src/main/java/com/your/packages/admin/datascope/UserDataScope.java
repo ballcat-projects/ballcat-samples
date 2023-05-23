@@ -25,11 +25,11 @@ public class UserDataScope implements Serializable {
 	/**
 	 * 数据权限范围，用户所能查看的用户id 集合
 	 */
-	private Set<Integer> scopeUserIds = new HashSet<>();
+	private Set<Long> scopeUserIds = new HashSet<>();
 
 	/**
 	 * 数据权限范围，用户所能查看的部门id 集合
 	 */
-	private Set<Integer> scopeDeptIds = new HashSet<>();
+	private Set<Long> scopeDeptIds = new HashSet<>();
 
 }

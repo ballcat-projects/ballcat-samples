@@ -28,6 +28,6 @@ public interface DocumentService extends ExtendService<Document> {
 	 * @param originOrganizationId 原组织id
 	 * @param currentOrganizationId 现组织id
 	 */
-	void updateUserOrganizationId(Integer userId, Integer originOrganizationId, Integer currentOrganizationId);
+	void updateUserOrganizationId(Long userId, Long originOrganizationId, Long currentOrganizationId);
 
 }

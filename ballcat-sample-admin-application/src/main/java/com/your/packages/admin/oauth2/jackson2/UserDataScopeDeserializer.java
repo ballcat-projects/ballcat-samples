@@ -19,7 +19,7 @@ import java.util.Set;
  */
 public class UserDataScopeDeserializer extends JsonDeserializer<UserDataScope> {
 
-	private static final TypeReference<Set<Integer>> INTEGER_SET = new TypeReference<Set<Integer>>() {
+	private static final TypeReference<Set<Long>> LONG_SET = new TypeReference<Set<Long>>() {
 	};
 
 	@Override
@@ -30,8 +30,8 @@ public class UserDataScopeDeserializer extends JsonDeserializer<UserDataScope> {
 		boolean allScope = readJsonNode(jsonNode, "allScope").asBoolean();
 		boolean onlySelf = readJsonNode(jsonNode, "onlySelf").asBoolean();
 
-		Set<Integer> scopeUserIds = mapper.convertValue(jsonNode.get("scopeUserIds"), INTEGER_SET);
-		Set<Integer> scopeDeptIds = mapper.convertValue(jsonNode.get("scopeDeptIds"), INTEGER_SET);
+		Set<Long> scopeUserIds = mapper.convertValue(jsonNode.get("scopeUserIds"), LONG_SET);
+		Set<Long> scopeDeptIds = mapper.convertValue(jsonNode.get("scopeDeptIds"), LONG_SET);
 
 		UserDataScope userDataScope = new UserDataScope();
 		userDataScope.setAllScope(allScope);

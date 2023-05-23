@@ -1,7 +1,7 @@
 package com.your.packages.admin.datascope;
 
 import cn.hutool.core.bean.BeanUtil;
-import cn.hutool.core.collection.CollectionUtil;
+import cn.hutool.core.collection.CollUtil;
 import com.hccake.ballcat.common.datascope.DataScope;
 import com.hccake.ballcat.common.security.constant.UserAttributeNameConstants;
 import com.hccake.ballcat.common.security.userdetails.User;
@@ -17,7 +17,10 @@ import net.sf.jsqlparser.expression.operators.relational.InExpression;
 import net.sf.jsqlparser.schema.Column;
 import org.springframework.stereotype.Component;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 /**
@@ -33,7 +36,7 @@ public class CustomDataScope implements DataScope {
 	/**
 	 * 拥有 organization_id 字段的表名集合
 	 */
-	private static final Set<String> ORGANIZATION_ID_TABLE_NAMES = CollectionUtil.newHashSet("sample_document");
+	private static final Set<String> ORGANIZATION_ID_TABLE_NAMES = CollUtil.newHashSet("sample_document");
 
 	private final Set<String> tableNames;
 
@@ -98,12 +101,12 @@ public class CustomDataScope implements DataScope {
 		}
 	}
 
-	private EqualsTo userIdEqualsToExpression(Alias tableAlias, Integer userId) {
+	private EqualsTo userIdEqualsToExpression(Alias tableAlias, Long userId) {
 		Column column = new Column(tableAlias == null ? USER_ID : tableAlias.getName() + "." + USER_ID);
 		return new EqualsTo(column, new LongValue(userId));
 	}
 
-	private Expression getInExpression(Alias tableAlias, String columnName, Set<Integer> scopeUserIds) {
+	private Expression getInExpression(Alias tableAlias, String columnName, Set<Long> scopeUserIds) {
 		Column column = new Column(tableAlias == null ? columnName : tableAlias.getName() + "." + columnName);
 		ExpressionList expressionList = new ExpressionList();
 		List<Expression> list = scopeUserIds.stream().map(LongValue::new).collect(Collectors.toList());

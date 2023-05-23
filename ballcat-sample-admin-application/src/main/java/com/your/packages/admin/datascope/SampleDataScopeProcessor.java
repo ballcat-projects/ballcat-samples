@@ -1,22 +1,15 @@
 package com.your.packages.admin.datascope;
 
-import cn.hutool.core.collection.CollectionUtil;
-import cn.hutool.core.util.StrUtil;
 import com.hccake.ballcat.system.model.entity.SysOrganization;
 import com.hccake.ballcat.system.model.entity.SysRole;
 import com.hccake.ballcat.system.model.entity.SysUser;
 import com.hccake.ballcat.system.service.SysOrganizationService;
 import com.hccake.ballcat.system.service.SysUserService;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -39,14 +32,14 @@ public class SampleDataScopeProcessor implements DataScopeProcessor {
 	@Override
 	public UserDataScope mergeScopeType(SysUser user, Collection<SysRole> roles) {
 		UserDataScope userDataScope = new UserDataScope();
-		Set<Integer> scopeUserIds = userDataScope.getScopeUserIds();
-		Set<Integer> scopeOrganizationId = userDataScope.getScopeDeptIds();
+		Set<Long> scopeUserIds = userDataScope.getScopeUserIds();
+		Set<Long> scopeOrganizationId = userDataScope.getScopeDeptIds();
 
 		// 任何用户都应该可以看到自己的数据
-		Integer userId = user.getUserId();
+		Long userId = user.getUserId();
 		scopeUserIds.add(userId);
 
-		if (CollectionUtil.isEmpty(roles)) {
+		if (CollectionUtils.isEmpty(roles)) {
 			return userDataScope;
 		}
 
@@ -89,15 +82,15 @@ public class SampleDataScopeProcessor implements DataScopeProcessor {
 		}
 
 		// 如果有 本级及子级 或者 本级，都把自己的 organizationId 加进去
-		Integer organizationId = user.getOrganizationId();
+		Long organizationId = user.getOrganizationId();
 		if (hasLevelChildLevel || hasLevel) {
 			scopeOrganizationId.add(organizationId);
 		}
 		// 如果有 本级及子级 或者 本人及子级，都把下级组织的 organizationId 加进去
 		if (hasLevelChildLevel || hasSelfChildLevel) {
 			List<SysOrganization> childOrganizations = sysOrganizationService.listChildOrganization(organizationId);
-			if (CollectionUtil.isNotEmpty(childOrganizations)) {
-				List<Integer> organizationIds = childOrganizations.stream()
+			if (CollectionUtils.isNotEmpty(childOrganizations)) {
+				List<Long> organizationIds = childOrganizations.stream()
 					.map(SysOrganization::getId)
 					.collect(Collectors.toList());
 				scopeOrganizationId.addAll(organizationIds);
@@ -105,21 +98,21 @@ public class SampleDataScopeProcessor implements DataScopeProcessor {
 		}
 		// 自定义部门
 		List<SysRole> sysRoles = map.get(DataScopeTypeEnum.CUSTOM.getType());
-		if (CollectionUtil.isNotEmpty(sysRoles)) {
-			Set<Integer> customDeptIds = sysRoles.stream()
+		if (CollectionUtils.isNotEmpty(sysRoles)) {
+			Set<Long> customDeptIds = sysRoles.stream()
 				.map(SysRole::getScopeResources)
 				.filter(Objects::nonNull)
-				.flatMap(x -> Arrays.stream(x.split(StrUtil.COMMA)))
-				.map(Integer::parseInt)
+				.flatMap(x -> Arrays.stream(x.split(",")))
+				.map(Long::parseLong)
 				.collect(Collectors.toSet());
 			scopeOrganizationId.addAll(customDeptIds);
 		}
 
 		// 把部门对应的用户id都放入集合中
-		if (CollectionUtil.isNotEmpty(scopeOrganizationId)) {
+		if (CollectionUtils.isNotEmpty(scopeOrganizationId)) {
 			List<SysUser> sysUserList = sysUserService.listByOrganizationIds(scopeOrganizationId);
-			if (CollectionUtil.isNotEmpty(sysUserList)) {
-				List<Integer> userIds = sysUserList.stream().map(SysUser::getUserId).collect(Collectors.toList());
+			if (CollectionUtils.isNotEmpty(sysUserList)) {
+				List<Long> userIds = sysUserList.stream().map(SysUser::getUserId).collect(Collectors.toList());
 				scopeUserIds.addAll(userIds);
 			}
 		}
