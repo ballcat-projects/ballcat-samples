@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 @Primary
 @Component
 @RequiredArgsConstructor
-public class TianaiCaptchaValidator implements CaptchaValidator {
+public class  TianaiCaptchaValidator implements CaptchaValidator {
 
 	private final ImageCaptchaApplication sca;
 
